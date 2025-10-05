@@ -4046,3 +4046,707 @@ html {
     }
   }
 
+  /* === МОБИЛЬНАЯ ОПТИМИЗАЦИЯ ДЛЯ IPHONE 15 PRO И ДРУГИХ УСТРОЙСТВ === */
+
+/* 1. Улучшенные медиа-запросы для iPhone 15 Pro и современных устройств */
+@media (max-width: 430px) {
+    /* iPhone 15 Pro: 393px × 852px */
+    
+    /* Улучшенная шапка для мобильных */
+    .header {
+        padding: 0.8rem 1rem !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(10, 10, 10, 0.9) !important;
+    }
+    
+    .header-content {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        gap: 0.5rem !important;
+    }
+    
+    .logo span {
+        font-size: 1.1rem !important;
+        white-space: nowrap;
+    }
+    
+    .nav {
+        gap: 0.5rem !important;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+    }
+    
+    .nav-link {
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.7rem !important;
+        white-space: nowrap;
+        background: rgba(255, 51, 51, 0.1);
+        border-radius: 8px;
+        border: 1px solid transparent;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        background: rgba(255, 51, 51, 0.2);
+        border-color: var(--accent-red);
+    }
+    
+    .header-contact {
+        display: none; /* Скрываем на очень маленьких экранах */
+    }
+
+    /* Герой-секция для iPhone */
+    .hero {
+        padding: 120px 1rem 50px !important;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hero-content {
+        width: 100%;
+    }
+    
+    .hero-title {
+        font-size: 2rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 2rem !important;
+        text-align: center;
+    }
+    
+    .hero-info {
+        padding: 1.2rem !important;
+        margin: 0 0 2rem 0 !important;
+        border-radius: 12px;
+    }
+    
+    .info-row {
+        padding: 0.8rem 0 !important;
+        flex-direction: column !important;
+        gap: 0.3rem !important;
+        text-align: center;
+    }
+    
+    .info-label {
+        font-size: 0.85rem !important;
+    }
+    
+    .info-value {
+        font-size: 0.95rem !important;
+        font-weight: 700;
+    }
+
+    /* Кнопки для тач-интерфейса */
+    .hero-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+        width: 100%;
+    }
+    
+    .btn {
+        padding: 1rem 1.5rem !important;
+        font-size: 0.9rem !important;
+        width: 100%;
+        max-width: 280px;
+        border-radius: 8px !important;
+        min-height: 50px; /* Минимальная высота для пальцев */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Улучшенная статистика */
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.8rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .stat-item {
+        padding: 1.2rem 0.8rem !important;
+        border-radius: 12px;
+    }
+    
+    .stat-number {
+        font-size: 2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem !important;
+        line-height: 1.2;
+    }
+
+    /* Цитаты */
+    .quotes-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .quote-card {
+        padding: 1.5rem 1rem !important;
+        border-radius: 12px;
+    }
+    
+    .quote-text {
+        font-size: 1rem !important;
+        line-height: 1.4;
+    }
+    
+    .quote-author {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* 2. Оптимизация для страницы "О Ежане" на мобильных */
+@media (max-width: 430px) {
+    .about-hero {
+        padding: 120px 1rem 40px !important;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    
+    .ezhan-photo {
+        height: 280px !important;
+        max-width: 100% !important;
+        border-radius: 12px;
+    }
+    
+    .image-frame {
+        padding: 15px !important;
+        border-radius: 12px;
+    }
+    
+    .photo-info-card {
+        padding: 1.2rem !important;
+        margin: 1rem 0 !important;
+        border-radius: 12px;
+    }
+    
+    .photo-info-card .info-item {
+        flex-direction: column !important;
+        gap: 0.3rem !important;
+        text-align: center;
+        padding: 0.8rem 0 !important;
+    }
+    
+    .bio-card {
+        padding: 1.5rem 1rem !important;
+        border-radius: 12px;
+    }
+    
+    .specs-grid {
+        gap: 0.8rem !important;
+    }
+    
+    .spec-item {
+        flex-direction: column !important;
+        gap: 0.3rem !important;
+        text-align: center;
+        padding: 1rem !important;
+        border-radius: 8px;
+    }
+}
+
+/* 3. Оптимизация для страницы "Манифест" на мобильных */
+@media (max-width: 430px) {
+    .manifest-hero {
+        padding: 120px 1rem 40px !important;
+    }
+    
+    .articles-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .article-card {
+        padding: 1.5rem 1rem !important;
+        border-radius: 12px;
+    }
+    
+    .article-header {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        text-align: center;
+    }
+    
+    .article-number {
+        min-width: 45px !important;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+    }
+    
+    .laws-list {
+        gap: 0.8rem !important;
+    }
+    
+    .law-item {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        text-align: center;
+        padding: 1rem !important;
+        border-radius: 8px;
+    }
+    
+    .oath-section {
+        padding: 1.5rem 1rem !important;
+        margin: 1rem 0.5rem !important;
+        border-radius: 12px;
+    }
+    
+    .oath-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .oath-text {
+        font-size: 1rem !important;
+        line-height: 1.6;
+    }
+}
+
+/* 4. Оптимизация для страницы "Галерея" на мобильных */
+@media (max-width: 430px) {
+    .gallery-hero {
+        padding: 120px 1rem 40px !important;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .gallery-card {
+        aspect-ratio: 1/1 !important;
+        border-radius: 12px;
+    }
+    
+    .gallery-image {
+        border-radius: 8px;
+    }
+    
+    .gallery-overlay {
+        opacity: 1 !important;
+        padding: 1rem !important;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        border-radius: 12px;
+    }
+    
+    .gallery-stats {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .stats-card {
+        padding: 1.2rem 0.8rem !important;
+        border-radius: 12px;
+    }
+}
+
+/* 5. ОПТИМИЗАЦИЯ ДЛЯ ИГРЫ НА МОБИЛЬНЫХ */
+@media (max-width: 430px) {
+    .game-hero {
+        padding: 120px 1rem 40px !important;
+    }
+    
+    .game-stats .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.8rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .game-stats .stat-item {
+        padding: 1rem 0.5rem !important;
+        border-radius: 10px;
+    }
+    
+    .game-stats .stat-number {
+        font-size: 1.5rem !important;
+    }
+    
+    .game-stats .stat-label {
+        font-size: 0.7rem !important;
+    }
+    
+    .progress-section {
+        padding: 1.2rem !important;
+        margin: 0 0.5rem 2rem !important;
+        border-radius: 12px;
+    }
+    
+    .progress-label {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        text-align: center;
+        font-size: 0.9rem !important;
+    }
+    
+    .progress-bar-game {
+        height: 20px;
+        border-radius: 10px;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.8rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .action-btn {
+        padding: 1.2rem 0.8rem !important;
+        border-radius: 12px;
+        min-height: 80px;
+    }
+    
+    .action-icon {
+        font-size: 2rem !important;
+    }
+    
+    .action-text {
+        font-size: 0.9rem !important;
+    }
+    
+    .action-desc {
+        font-size: 0.8rem !important;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.8rem !important;
+        padding: 0 0.5rem !important;
+    }
+    
+    .achievement-item {
+        padding: 1rem !important;
+        border-radius: 10px;
+    }
+    
+    .achievement-icon {
+        font-size: 1.5rem !important;
+        width: 40px;
+    }
+    
+    .achievement-name {
+        font-size: 0.9rem !important;
+    }
+    
+    .achievement-desc {
+        font-size: 0.8rem !important;
+    }
+    
+    .messages-container {
+        margin: 0 0.5rem !important;
+        max-height: 250px;
+        padding: 1rem !important;
+        border-radius: 12px;
+        font-size: 0.85rem;
+    }
+    
+    .message-item {
+        flex-direction: column !important;
+        gap: 0.3rem !important;
+        padding: 0.7rem 0 !important;
+    }
+    
+    .message-time {
+        min-width: auto !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+/* 6. ОПТИМИЗАЦИЯ ДЛЯ AI ЕЖАНА НА МОБИЛЬНЫХ */
+@media (max-width: 430px) {
+    .ai-ezhan-container {
+        margin: 20px 0.5rem !important;
+        padding: 1.2rem 0.8rem !important;
+        border-radius: 12px;
+    }
+    
+    .ai-title {
+        font-size: 1.1rem !important;
+    }
+    
+    .ai-phrase {
+        font-size: 1rem !important;
+        min-height: 50px !important;
+        padding: 1rem !important;
+        border-radius: 8px;
+    }
+    
+    .ai-ezhan-btn {
+        padding: 1rem 1.2rem !important;
+        font-size: 0.85rem !important;
+        width: 100%;
+        max-width: 280px;
+        border-radius: 8px !important;
+    }
+}
+
+/* 7. УЧЕТ БЕЗОПАСНОЙ ЗОНЫ ДЛЯ IPHONE 15 PRO */
+@supports (padding: max(0px)) {
+    .header,
+    .hero,
+    .about-hero,
+    .manifest-hero,
+    .gallery-hero,
+    .game-hero {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+    
+    .header {
+        padding-top: max(0.8rem, env(safe-area-inset-top));
+    }
+    
+    .footer {
+        padding-bottom: max(2rem, env(safe-area-inset-bottom));
+    }
+}
+
+/* 8. УЛУЧШЕНИЯ ДЛЯ ТАЧ-ИНТЕРФЕЙСА */
+@media (hover: none) and (pointer: coarse) {
+    /* Увеличиваем область клика для тач-устройств */
+    .btn, .nav-link, .action-btn, .gallery-card {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Улучшаем feedback при касании */
+    .btn:active,
+    .nav-link:active,
+    .action-btn:active,
+    .gallery-card:active,
+    .stat-item:active,
+    .quote-card:active {
+        transform: scale(0.97);
+        transition: transform 0.1s ease;
+    }
+    
+    /* Уменьшаем hover-эффекты на тач-устройствах */
+    .stat-item:hover,
+    .quote-card:hover,
+    .bio-card:hover,
+    .article-card:hover,
+    .gallery-card:hover {
+        transform: none;
+    }
+}
+
+/* 9. ОПТИМИЗАЦИЯ ПРОИЗВОДИТЕЛЬНОСТИ ДЛЯ МОБИЛЬНЫХ */
+@media (max-width: 768px) {
+    /* Уменьшаем сложные анимации на мобильных */
+    .particle {
+        display: none; /* Скрываем частицы на мобильных для производительности */
+    }
+    
+    .animated-bg::before {
+        animation-duration: 30s; /* Замедляем анимацию фона */
+    }
+    
+    .fire-text {
+        animation-duration: 4s; /* Замедляем анимацию огненного текста */
+    }
+    
+    /* Упрощаем тени для лучшей производительности */
+    .stat-item,
+    .quote-card,
+    .bio-card,
+    .article-card,
+    .gallery-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .stat-item:hover,
+    .quote-card:hover,
+    .bio-card:hover,
+    .article-card:hover,
+    .gallery-card:hover {
+        box-shadow: 0 4px 12px rgba(255, 51, 51, 0.15) !important;
+    }
+}
+
+/* 10. ИСПРАВЛЕНИЯ ДЛЯ ГОРИЗОНТАЛЬНОЙ ОРИЕНТАЦИИ */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header {
+        padding: 0.5rem 1rem !important;
+    }
+    
+    .hero, .about-hero, .manifest-hero, .gallery-hero, .game-hero {
+        padding: 80px 1rem 20px !important;
+        min-height: auto;
+    }
+    
+    .hero-title, .page-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 0.5rem !important;
+    }
+    
+    .stat-item {
+        padding: 0.8rem 0.3rem !important;
+    }
+    
+    .stat-number {
+        font-size: 1.3rem !important;
+    }
+    
+    .stat-label {
+        font-size: 0.6rem !important;
+    }
+    
+    .messages-container {
+        max-height: 150px !important;
+    }
+}
+
+/* 11. УЛУЧШЕНИЯ ДЛЯ ПЛАНШЕТОВ */
+@media (min-width: 431px) and (max-width: 768px) {
+    .container {
+        padding: 0 15px !important;
+    }
+    
+    .hero-title, .page-title {
+        font-size: 2.5rem !important;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.2rem !important;
+    }
+    
+    .quotes-grid, .articles-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.2rem !important;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.2rem !important;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr !important;
+        gap: 2.5rem !important;
+    }
+    
+    .nav {
+        gap: 1rem !important;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem !important;
+    }
+    
+    .game-stats .stats-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    
+    .actions-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* 12. ФИНАЛЬНЫЕ ИСПРАВЛЕНИЯ И УЛУЧШЕНИЯ */
+@media (max-width: 430px) {
+    /* Убеждаемся, что все элементы влезают по ширине */
+    body {
+        overflow-x: hidden;
+        position: relative;
+    }
+    
+    /* Улучшаем читаемость текста */
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+    
+    /* Улучшаем скролл на iOS */
+    .scroll-container {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Фиксим z-index для мобильных */
+    .header {
+        z-index: 1000;
+    }
+    
+    #settings-btn {
+        z-index: 1001;
+    }
+    
+    .notification {
+        z-index: 1002;
+    }
+    
+    /* Улучшаем внешний вид футера */
+    .footer {
+        padding: 1.5rem 1rem;
+        text-align: center;
+    }
+    
+    .footer p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+}
+
+/* 13. УЧЕТ РЕЖИМА ЭКОНОМИИ ЭНЕРГИИ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* 14. ПОДДЕРЖКА ТЕМНОЙ/СВЕТЛОЙ ТЕМЫ СИСТЕМЫ */
+@media (prefers-color-scheme: light) {
+    [data-theme="auto"] {
+        --bg-dark: #fdf6e3;
+        --bg-card: #fffdf5;
+        --bg-light: #f5ebd8;
+        --text-primary: #5c4b37;
+        --text-secondary: #8c7b69;
+        --text-muted: #a89984;
+        --accent-red: #d65d0e;
+        --accent-blue: #458588;
+        --border-color: #e5d9c4;
+        --border-light: #f0e6d2;
+        --success-color: #689d6a;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+        --bg-dark: #0a0a0a;
+        --bg-card: #1a1a1a;
+        --bg-light: #2a2a2a;
+        --text-primary: #ffffff;
+        --text-secondary: #cccccc;
+        --text-muted: #888888;
+        --accent-red: #ff3333;
+        --accent-blue: #3366ff;
+        --border-color: #333333;
+        --border-light: #444444;
+        --success-color: #00ff88;
+    }
+}
+
