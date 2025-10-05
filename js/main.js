@@ -575,6 +575,56 @@ document.addEventListener('DOMContentLoaded', () => {
     new MainApp();
 });
 
+// Мобильная адаптация - принудительная
+function forceMobileStyles() {
+    if (window.innerWidth <= 768) {
+        console.log('📱 Применяем мобильные стили...');
+        
+        // Уменьшаем шапку
+        const header = document.querySelector('.header');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const heroTitle = document.querySelector('.hero-title');
+        
+        if (header) {
+            header.style.padding = '10px 15px';
+            header.style.fontSize = '14px';
+        }
+        
+        if (navLinks.length > 0) {
+            navLinks.forEach(link => {
+                link.style.fontSize = '12px';
+                link.style.padding = '6px 10px';
+            });
+        }
+        
+        if (heroTitle) {
+            heroTitle.style.fontSize = '24px';
+            heroTitle.style.lineHeight = '1.2';
+        }
+        
+        // Уменьшаем статус и статистику
+        const statusElements = document.querySelectorAll('.status-badge, .stat-card');
+        statusElements.forEach(el => {
+            el.style.fontSize = '12px';
+            el.style.padding = '8px';
+            el.style.margin = '5px 0';
+        });
+        
+        // Уменьшаем числа статистики
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(num => {
+            num.style.fontSize = '20px';
+        });
+    }
+}
+
+// Запускаем при загрузке и при изменении размера
+document.addEventListener('DOMContentLoaded', forceMobileStyles);
+window.addEventListener('resize', forceMobileStyles);
+
+// Также запускаем с задержкой на всякий случай
+setTimeout(forceMobileStyles, 1000);
+
 
 // Глобальные функции
 window.resetButtons = AppUtils.resetButtons;
