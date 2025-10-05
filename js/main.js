@@ -264,118 +264,120 @@ class MainApp {
     }
 
     // 3. Система частиц
-    setupParticleSystem() {
-        document.querySelectorAll('.btn, .gallery-card, .stat-item, .quote-card, .bio-card, .article-card, .law-item, .stats-card, .nav-link, .spec-item').forEach(element => {
-            // При клике - МНОГО частиц
-            element.addEventListener('click', (e) => {
-                this.createParticles(e.clientX, e.clientY, 25, 'click');
-            });
-            
-            // При наведении - много частиц
-            element.addEventListener('mouseenter', (e) => {
-                this.createParticles(e.clientX, e.clientY, 15, 'hover');
-            });
+// 3. УЛУЧШЕННАЯ СИСТЕМА ЧАСТИЦ
+setupParticleSystem() {
+    const elements = document.querySelectorAll('.btn, .gallery-card, .stat-item, .quote-card, .bio-card, .article-card, .law-item, .stats-card, .nav-link, .spec-item, .action-btn');
 
-            // Для мобильных - касание
-            element.addEventListener('touchstart', (e) => {
-                const touch = e.touches[0];
-                this.createParticles(touch.clientX, touch.clientY, 20, 'touch');
-            });
+    elements.forEach(element => {
+        // При клике - умеренное количество частиц
+        element.addEventListener('click', (e) => {
+            this.createParticles(e.clientX, e.clientY, 15, 'click');
+        });
+        
+        // При наведении - меньше частиц для плавности
+        element.addEventListener('mouseenter', (e) => {
+            if (window.innerWidth > 768) { // Только на ПК
+                this.createParticles(e.clientX, e.clientY, 6, 'hover');
+            }
         });
 
-        // Особые эффекты для заголовков
-        document.querySelectorAll('.hero-title, .page-title, .section-title').forEach(title => {
-            title.addEventListener('mouseenter', (e) => {
+        // Для мобильных - касание
+        element.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            this.createParticles(touch.clientX, touch.clientY, 8, 'touch');
+        });
+    });
+
+    // Особые эффекты для заголовков
+    document.querySelectorAll('.hero-title, .page-title, .section-title').forEach(title => {
+        title.addEventListener('mouseenter', (e) => {
+            if (window.innerWidth > 768) {
                 const rect = title.getBoundingClientRect();
                 const x = rect.left + rect.width / 2;
                 const y = rect.top + rect.height / 2;
-                this.createParticles(x, y, 30, 'title');
-            });
-        });
-    }
-
-    createParticles(x, y, count, type = 'default') {
-        const colors = {
-            click: ['#ff3333', '#ff6b35', '#ff9933', '#ff3333'],
-            hover: ['#ff4444', '#ff5555', '#ff6666', '#ff3333'],
-            touch: ['#ff3333', '#ff4444', '#ff5555'],
-            title: ['#ff3333', '#ff6b35', '#ff9933', '#ffcc33', '#ffffff'],
-            default: ['#ff3333', '#ff4444', '#ff5555']
-        };
-
-        const sizes = {
-            click: { min: 3, max: 8 },
-            hover: { min: 2, max: 6 },
-            touch: { min: 3, max: 7 },
-            title: { min: 4, max: 10 },
-            default: { min: 2, max: 5 }
-        };
-
-        const speeds = {
-            click: 100,
-            hover: 80,
-            touch: 90,
-            title: 120,
-            default: 70
-        };
-
-        const currentColors = colors[type] || colors.default;
-        const currentSize = sizes[type] || sizes.default;
-        const currentSpeed = speeds[type] || speeds.default;
-
-        for (let i = 0; i < count; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            // Случайный угол и расстояние
-            const angle = Math.random() * Math.PI * 2;
-            const distance = currentSpeed + Math.random() * 50;
-            const tx = Math.cos(angle) * distance;
-            const ty = Math.sin(angle) * distance;
-            
-            // Случайный размер
-            const size = Math.random() * (currentSize.max - currentSize.min) + currentSize.min;
-            
-            // Случайный цвет из палитры
-            const color = currentColors[Math.floor(Math.random() * currentColors.length)];
-            
-            // Случайная задержка анимации
-            const delay = Math.random() * 0.5;
-            
-            // Случайная длительность анимации
-            const duration = 1 + Math.random() * 1.5;
-            
-            Object.assign(particle.style, {
-                '--tx': tx + 'px',
-                '--ty': ty + 'px',
-                left: x + 'px',
-                top: y + 'px',
-                background: color,
-                width: `${size}px`,
-                height: `${size}px`,
-                borderRadius: '50%',
-                animationDelay: `${delay}s`,
-                animationDuration: `${duration}s`,
-                boxShadow: `0 0 ${size * 2}px ${color}`
-            });
-            
-            document.body.appendChild(particle);
-            
-            // Удаляем частицу после анимации
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.remove();
-                }
-            }, (duration + delay) * 1000);
-        }
-
-        // Вибрация для мобильных
-        if (type === 'click' || type === 'touch') {
-            if (this.shouldVibrate() && navigator.vibrate) {
-                navigator.vibrate(30);
+                this.createParticles(x, y, 10, 'title');
             }
-        }
+        });
+    });
+}
+
+createParticles(x, y, count, type = 'default') {
+    const colors = {
+        click: ['#ff3333', '#ff6b35', '#ff9933'],
+        hover: ['#ff4444', '#ff5555', '#ff6666'],
+        touch: ['#ff3333', '#ff4444', '#ff5555'],
+        title: ['#ff3333', '#ff6b35', '#ff9933', '#ffcc33'],
+        default: ['#ff3333', '#ff4444', '#ff5555']
+    };
+
+    const settings = {
+        click: { min: 3, max: 6, speed: 80, count: 12 },
+        hover: { min: 2, max: 4, speed: 60, count: 8 },
+        touch: { min: 2, max: 5, speed: 70, count: 10 },
+        title: { min: 3, max: 7, speed: 100, count: 15 },
+        default: { min: 2, max: 4, speed: 50, count: 6 }
+    };
+
+    const currentColors = colors[type] || colors.default;
+    const currentSettings = settings[type] || settings.default;
+
+    // Адаптивное количество частиц для мобильных
+    let particleCount = count;
+    if (window.innerWidth <= 768 && type === 'hover') {
+        particleCount = Math.floor(count / 2); // Меньше частиц на мобильных
     }
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Случайный угол и расстояние
+        const angle = Math.random() * Math.PI * 2;
+        const distance = currentSettings.speed + Math.random() * 30;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        
+        // Случайный размер
+        const size = Math.random() * (currentSettings.max - currentSettings.min) + currentSettings.min;
+        
+        // Случайный цвет из палитры
+        const color = currentColors[Math.floor(Math.random() * currentColors.length)];
+        
+        // Плавная задержка анимации
+        const delay = Math.random() * 0.3;
+        
+        // Плавная длительность анимации
+        const duration = 1 + Math.random() * 0.5;
+        
+        Object.assign(particle.style, {
+            '--tx': tx + 'px',
+            '--ty': ty + 'px',
+            left: x + 'px',
+            top: y + 'px',
+            background: color,
+            width: `${size}px`,
+            height: `${size}px`,
+            borderRadius: '50%',
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+            boxShadow: `0 0 ${size * 1.2}px ${color}`
+        });
+        
+        document.body.appendChild(particle);
+        
+        // Удаляем частицу после анимации
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.remove();
+            }
+        }, (duration + delay) * 1000);
+    }
+
+    // Вибрация для мобильных
+    if ((type === 'click' || type === 'touch') && this.shouldVibrate() && navigator.vibrate) {
+        navigator.vibrate(30);
+    }
+}
 
     // 4. 3D карточки для галереи
     setup3DCards() {

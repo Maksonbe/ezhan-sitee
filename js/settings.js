@@ -17,6 +17,7 @@ class EzhanSettings {
         
         this.loadSettings();
         this.createSettingsButton();
+        this.createMobileHeader(); // НОВАЯ ФУНКЦИЯ ДЛЯ МОБИЛЬНОЙ ШАПКИ
         this.createSettingsPanel();
         this.applyTheme(this.settings.theme);
         this.setupGlobalEventListeners();
@@ -24,6 +25,241 @@ class EzhanSettings {
         this.isInitialized = true;
         
         console.log('✅ Настройки Ежана загружены');
+    }
+    // 🎨 СОЗДАНИЕ КНОПКИ НАСТРОЕК
+createSettingsButton() {
+    if (document.getElementById('settings-btn')) return;
+
+    // Для мобильных используем другую логику
+    if (this.isMobile()) {
+        this.createMobileHeader();
+        return;
+    }
+
+    // Для ПК создаем обычную кнопку
+    const settingsBtn = document.createElement('button');
+    settingsBtn.id = 'settings-btn';
+    settingsBtn.innerHTML = '⚙️';
+    settingsBtn.title = 'Настройки дегенерации';
+    
+    Object.assign(settingsBtn.style, {
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        width: '50px',
+        height: '50px',
+        borderRadius: '50%',
+        background: 'var(--accent-red)',
+        border: 'none',
+        color: 'white',
+        fontSize: '1.5rem',
+        cursor: 'pointer',
+        zIndex: '10000',
+        boxShadow: '0 4px 15px rgba(255, 51, 51, 0.3)',
+        transition: 'all 0.3s ease',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'inherit'
+    });
+
+    settingsBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1) rotate(90deg)';
+        this.style.boxShadow = '0 6px 20px rgba(255, 51, 51, 0.5)';
+    });
+
+    settingsBtn.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) rotate(0deg)';
+        this.style.boxShadow = '0 4px 15px rgba(255, 51, 51, 0.3)';
+    });
+
+    settingsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleSettingsPanel();
+        this.vibrate(30);
+    });
+
+    document.body.appendChild(settingsBtn);
+}
+
+    // 📱 СОЗДАЕМ МОБИЛЬНУЮ ШАПКУ С НАСТРОЙКАМИ
+    createMobileHeader() {
+        if (!this.isMobile()) return;
+        
+        const existingBtn = document.getElementById('settings-btn');
+        if (existingBtn) existingBtn.remove();
+
+        const headerContent = document.querySelector('.header-content');
+        if (!headerContent) return;
+
+        // Создаем контейнер для лого и настроек
+        const leftSection = document.createElement('div');
+        leftSection.className = 'mobile-header-left';
+        leftSection.style.cssText = `
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        `;
+
+        // Логотип
+        const logo = document.createElement('div');
+        logo.className = 'mobile-logo';
+        logo.innerHTML = 'ЕЖАН СИСТЕМС';
+        logo.style.cssText = `
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        `;
+
+        // Кнопка настроек
+        const settingsBtn = document.createElement('button');
+        settingsBtn.id = 'mobile-settings-btn';
+        settingsBtn.innerHTML = '⚙️';
+        settingsBtn.title = 'Настройки дегенерации';
+        settingsBtn.style.cssText = `
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--accent-red);
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        `;
+
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleSettingsPanel();
+            this.vibrate(30);
+        });
+
+        leftSection.appendChild(logo);
+        leftSection.appendChild(settingsBtn);
+
+        // Заменяем существующий контент шапки
+        headerContent.innerHTML = '';
+        headerContent.appendChild(leftSection);
+        headerContent.style.cssText = `
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        `;
+
+        // Создаем кнопку меню справа
+        const menuBtn = this.createMobileMenuButton();
+        headerContent.appendChild(menuBtn);
+    }
+
+    // 🍔 СОЗДАЕМ КНОПКУ МЕНЮ ДЛЯ МОБИЛЬНЫХ
+    createMobileMenuButton() {
+        const menuBtn = document.createElement('button');
+        menuBtn.className = 'mobile-menu-btn';
+        menuBtn.innerHTML = '☰';
+        menuBtn.style.cssText = `
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 51, 51, 0.2);
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        `;
+
+        menuBtn.addEventListener('click', () => {
+            this.toggleMobileMenu();
+            this.vibrate(30);
+        });
+
+        return menuBtn;
+    }
+
+    // 📱 ПЕРЕКЛЮЧЕНИЕ МОБИЛЬНОГО МЕНЮ
+    toggleMobileMenu() {
+        let mobileMenu = document.querySelector('.mobile-nav-menu');
+        
+        if (!mobileMenu) {
+            mobileMenu = document.createElement('div');
+            mobileMenu.className = 'mobile-nav-menu';
+            mobileMenu.style.cssText = `
+                position: fixed;
+                top: 60px;
+                right: 15px;
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: 10px;
+                padding: 1rem;
+                z-index: 10001;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+                display: none;
+                flex-direction: column;
+                gap: 0.5rem;
+                min-width: 150px;
+            `;
+
+            const links = [
+                { href: 'index.html', text: 'Главная' },
+                { href: 'about.html', text: 'О Ежане' },
+                { href: 'manifest.html', text: 'Манифест' },
+                { href: 'gallery.html', text: 'Галерея' },
+                { href: 'game.html', text: 'Simulator' }
+            ];
+
+            links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.href;
+                a.textContent = link.text;
+                a.className = 'mobile-nav-link';
+                a.style.cssText = `
+                    color: var(--text-primary);
+                    text-decoration: none;
+                    padding: 0.5rem 1rem;
+                    border-radius: 5px;
+                    transition: all 0.3s ease;
+                    font-size: 0.9rem;
+                `;
+                a.addEventListener('mouseenter', () => {
+                    a.style.background = 'var(--accent-red)';
+                    a.style.color = 'white';
+                });
+                a.addEventListener('mouseleave', () => {
+                    a.style.background = 'transparent';
+                    a.style.color = 'var(--text-primary)';
+                });
+                mobileMenu.appendChild(a);
+            });
+
+            document.body.appendChild(mobileMenu);
+        }
+
+        if (mobileMenu.style.display === 'flex') {
+            mobileMenu.style.display = 'none';
+        } else {
+            mobileMenu.style.display = 'flex';
+            
+            // Закрытие при клике вне меню
+            const closeMenu = (e) => {
+                if (!mobileMenu.contains(e.target) && !e.target.classList.contains('mobile-menu-btn')) {
+                    mobileMenu.style.display = 'none';
+                    document.removeEventListener('click', closeMenu);
+                }
+            };
+            setTimeout(() => document.addEventListener('click', closeMenu), 100);
+        }
+    }
+
+    // 📱 ПРОВЕРКА МОБИЛЬНОГО УСТРОЙСТВА
+    isMobile() {
+        return window.innerWidth <= 768;
     }
 
     // 📥 ЗАГРУЗКА НАСТРОЕК
@@ -71,55 +307,6 @@ class EzhanSettings {
         }
     }
 
-    // 🎨 СОЗДАНИЕ КНОПКИ НАСТРОЕК
-    createSettingsButton() {
-        if (document.getElementById('settings-btn')) return;
-
-        const settingsBtn = document.createElement('button');
-        settingsBtn.id = 'settings-btn';
-        settingsBtn.innerHTML = '⚙️';
-        settingsBtn.title = 'Настройки дегенерации';
-        
-        Object.assign(settingsBtn.style, {
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            width: '50px',
-            height: '50px',
-            borderRadius: '50%',
-            background: 'var(--accent-red)',
-            border: 'none',
-            color: 'white',
-            fontSize: '1.5rem',
-            cursor: 'pointer',
-            zIndex: '10000',
-            boxShadow: '0 4px 15px rgba(255, 51, 51, 0.3)',
-            transition: 'all 0.3s ease',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontFamily: 'inherit'
-        });
-
-        settingsBtn.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.1) rotate(90deg)';
-            this.style.boxShadow = '0 6px 20px rgba(255, 51, 51, 0.5)';
-        });
-
-        settingsBtn.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1) rotate(0deg)';
-            this.style.boxShadow = '0 4px 15px rgba(255, 51, 51, 0.3)';
-        });
-
-        settingsBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            this.toggleSettingsPanel();
-            this.vibrate(30);
-        });
-
-        document.body.appendChild(settingsBtn);
-    }
-
     // 🎛️ СОЗДАНИЕ ПАНЕЛИ НАСТРОЕК
     createSettingsPanel() {
         if (document.getElementById('settings-panel')) return;
@@ -158,8 +345,6 @@ class EzhanSettings {
                 
                 <div class="settings-divider"></div>
                 
-                <!-- Звук УБРАН -->
-                
                 <!-- Вибрация -->
                 <div class="setting-group">
                     <div class="setting-row">
@@ -169,19 +354,17 @@ class EzhanSettings {
                             <span class="slider"></span>
                         </label>
                     </div>
-                    <div class="setting-description">Тактильная отдача при действиях в игре</div>
                 </div>
                 
                 <!-- Уведомления -->
                 <div class="setting-group">
                     <div class="setting-row">
-                        <label for="notifications-toggle" class="setting-label">🔔 УВЕДОМЛЕНИЯ</label>
+                        <label for="notifications-toggle" class="setting-label">🔔 ЕБУЧИЕ УВЕДОМЛЕНИЯ</label>
                         <label class="switch">
                             <input type="checkbox" id="notifications-toggle" ${this.settings.notifications ? 'checked' : ''}>
                             <span class="slider"></span>
                         </label>
                     </div>
-                    <div class="setting-description">Оповещения о достижениях и комбо</div>
                 </div>
             </div>
             
@@ -253,7 +436,7 @@ class EzhanSettings {
         // Закрытие по клику вне панели
         document.addEventListener('click', (e) => {
             const panel = document.getElementById('settings-panel');
-            const btn = document.getElementById('settings-btn');
+            const btn = document.getElementById('mobile-settings-btn');
             
             if (panel && panel.classList.contains('active') && 
                 !panel.contains(e.target) && e.target !== btn) {
@@ -306,8 +489,8 @@ class EzhanSettings {
     // 🔔 УВЕДОМЛЕНИЯ О НАСТРОЙКАХ
     showSettingNotification(setting, enabled) {
         const messages = {
-            vibration: `📳 Вибрация ${enabled ? 'включена' : 'выключена'}`,
-            notifications: `🔔 Уведомления ${enabled ? 'включены' : 'выключены'}`
+            vibration: `📳 Вибрация проёбов ${enabled ? 'включена' : 'выключена'}`,
+            notifications: `🔔 Ебучие уведомления ${enabled ? 'включены' : 'выключены'}`
         };
         
         this.showNotification(messages[setting] || 'Настройка изменена', 'success');
@@ -567,9 +750,43 @@ class EzhanSettings {
                 font-weight: 700;
             }
             
+            /* Мобильные стили */
+            .mobile-header-left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .mobile-logo {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--text-primary);
+            }
+            
+            .mobile-menu-btn:hover,
+            #mobile-settings-btn:hover {
+                transform: scale(1.1);
+                box-shadow: 0 4px 12px rgba(255, 51, 51, 0.4);
+            }
+            
+            .mobile-nav-menu {
+                display: none;
+            }
+            
             @media (max-width: 480px) {
                 .settings-panel {
                     width: 100vw;
+                }
+                
+                .mobile-logo {
+                    font-size: 1rem;
+                }
+                
+                #mobile-settings-btn,
+                .mobile-menu-btn {
+                    width: 32px;
+                    height: 32px;
+                    font-size: 0.9rem;
                 }
             }
         `;

@@ -201,21 +201,21 @@ class GameEnhancements {
         });
     }
 
-    // 🎇 ПРОВЕРКА MILESTONES КОМБО (10, 20, 30...)
-    checkComboMilestones(combo) {
-        const milestones = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-        
-        milestones.forEach(milestone => {
-            if (combo === milestone && !this.processedComboMilestones.has(milestone)) {
-                this.processedComboMilestones.add(milestone);
-                this.createFireworks(milestone);
-                
-                if (this.shouldShowNotification()) {
-                    NotificationManager.show(`🎇 COMBO ${milestone}! ФЕЙЕРВЕРК!`, 'success');
-                }
-            }
-        });
-    }
+// 🎇 ПРОВЕРКА MILESTONES КОМБО (10, 20, 30...)
+checkComboMilestones(combo) {
+    const milestones = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+    
+    milestones.forEach(milestone => {
+        if (combo === milestone && !this.processedComboMilestones.has(milestone)) {
+            this.processedComboMilestones.add(milestone);
+            this.createFireworks(milestone);
+            
+            // КОМБО ВСЕГДА ПОКАЗЫВАЕТСЯ, даже если уведомления выключены
+            // но уведомление "COMBO X! ФЕЙЕРВЕРК!" не показывается
+            console.log(`🎇 COMBO ${milestone}! ФЕЙЕРВЕРК!`);
+        }
+    });
+}
 
     // 🎆 СОЗДАНИЕ ФЕЙЕРВЕРКОВ
     createFireworks(milestone) {

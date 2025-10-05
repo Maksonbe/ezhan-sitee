@@ -5081,4 +5081,209 @@ html {
         z-index: 1000 !important;
     }
 }
+/* === МОБИЛЬНАЯ ШАПКА С НАСТРОЙКАМИ === */
+@media (max-width: 768px) {
+    .header-content {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+    
+    .nav {
+        display: none !important;
+    }
+    
+    .header-contact {
+        display: none !important;
+    }
+    
+    .mobile-header-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+    
+    .mobile-logo {
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+        color: var(--text-primary) !important;
+    }
+    
+    #mobile-settings-btn,
+    .mobile-menu-btn {
+        width: 35px !important;
+        height: 35px !important;
+        border-radius: 50% !important;
+        background: var(--accent-red) !important;
+        border: none !important;
+        color: white !important;
+        font-size: 1rem !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .mobile-menu-btn {
+        background: rgba(255, 51, 51, 0.2) !important;
+        border: 1px solid var(--accent-red) !important;
+        color: var(--accent-red) !important;
+        font-size: 1.2rem !important;
+    }
+    
+    #mobile-settings-btn:hover,
+    .mobile-menu-btn:hover {
+        transform: scale(1.1) !important;
+        box-shadow: 0 4px 12px rgba(255, 51, 51, 0.4) !important;
+    }
+    
+    .mobile-nav-menu {
+        position: fixed;
+        top: 60px;
+        right: 15px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 1rem;
+        z-index: 10001;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+        min-width: 150px;
+    }
+    
+    .mobile-nav-link {
+        color: var(--text-primary);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+    
+    .mobile-nav-link:hover {
+        background: var(--accent-red);
+        color: white;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-logo {
+        font-size: 1rem !important;
+    }
+    
+    #mobile-settings-btn,
+    .mobile-menu-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.9rem !important;
+    }
+}
+/* === УЛУЧШЕННЫЕ ЧАСТИЦЫ === */
+
+.particle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+    animation: particle-float 1.5s ease-out forwards;
+    opacity: 0.9;
+    filter: blur(0.8px);
+    mix-blend-mode: screen;
+}
+
+@keyframes particle-float {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(var(--tx, 0), var(--ty, -100px)) scale(1.1) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(var(--tx, 0) * 1.2), calc(var(--ty, -100px) * 1.2)) scale(0) rotate(360deg);
+    }
+}
+
+/* Плавные частицы для hover */
+[data-particle-type="hover"] .particle {
+    animation-duration: 1.2s;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Более заметные частицы для кликов */
+[data-particle-type="click"] .particle {
+    animation-duration: 1s;
+    filter: blur(0.5px) brightness(1.3);
+}
+
+/* Особые эффекты для разных цветов */
+.particle[style*="#ff3333"] {
+    filter: blur(0.6px) brightness(1.2) drop-shadow(0 0 2px #ff3333);
+}
+
+.particle[style*="#ff6b35"] {
+    filter: blur(0.7px) brightness(1.3) drop-shadow(0 0 2px #ff6b35);
+}
+
+.particle[style*="#ff9933"] {
+    filter: blur(0.8px) brightness(1.4) drop-shadow(0 0 2px #ff9933);
+}
+
+.particle[style*="#ffcc33"] {
+    filter: blur(1px) brightness(1.5) drop-shadow(0 0 3px #ffcc33);
+}
+
+.particle[style*="#ffffff"] {
+    filter: blur(1.2px) brightness(2) drop-shadow(0 0 4px #ffffff);
+    mix-blend-mode: overlay;
+}
+
+/* Адаптивность частиц для мобильных */
+@media (max-width: 768px) {
+    .particle {
+        animation-duration: 1s;
+        filter: blur(1px);
+    }
+    
+    /* Меньше частиц на мобильных для производительности */
+    [data-particle-type="hover"] .particle {
+        display: none; /* Скрываем hover-частицы на мобильных */
+    }
+}
+
+/* Улучшенные hover эффекты с частицами */
+.stat-item:hover::after,
+.quote-card:hover::after,
+.bio-card:hover::after,
+.article-card:hover::after,
+.gallery-card:hover::after,
+.action-btn:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                               rgba(255, 51, 51, 0.1) 0%, 
+                               transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+}
+
+.stat-item:hover::after,
+.quote-card:hover::after,
+.bio-card:hover::after,
+.article-card:hover::after,
+.gallery-card:hover::after,
+.action-btn:hover::after {
+    opacity: 1;
+}
 
