@@ -1,0 +1,3916 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-card: #1a1a1a;
+    --bg-light: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    --accent-red: #ff3333;
+    --accent-blue: #3366ff;
+    --border-color: #333333;
+    --border-light: #444444;
+    --success-color: #00ff88;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: var(--bg-dark);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text-primary);
+}
+
+.header-contact {
+    display: flex;
+    align-items: center;
+}
+
+.contact-phone {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Hero Section */
+.hero {
+    padding: 180px 0 100px;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #151515 100%);
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+}
+
+.hero-accent {
+    color: var(--accent-red);
+}
+
+.hero-info {
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.info-value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.info-value.error {
+    color: var(--accent-red);
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: var(--accent-red);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #ff4444;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-light);
+    transform: translateY(-2px);
+}
+
+/* Stats Section */
+.stats-section {
+    padding: 80px 0;
+    background: var(--bg-card);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-red);
+    margin-bottom: 1rem;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Quotes Section */
+.quotes-section {
+    padding: 100px 0;
+    background: var(--bg-dark);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+.quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.quote-card {
+    background: var(--bg-card);
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border-color);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.quote-card:hover {
+    transform: translateY(-5px);
+}
+
+.quote-card::before {
+    content: '"';
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-size: 4rem;
+    color: var(--accent-red);
+    opacity: 0.3;
+    line-height: 1;
+}
+
+.quote-text {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.quote-author {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+/* Footer */
+.footer {
+    background: var(--bg-card);
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* About Page Styles */
+.about-hero {
+    padding: 150px 0 80px;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #151515 100%);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-image-section {
+    text-align: center;
+}
+
+.image-frame {
+    position: relative;
+    background: var(--bg-card);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.ezhan-photo {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border: 2px solid var(--accent-red);
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto;
+}
+
+.photo-info-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-top: 1.5rem;
+}
+
+.photo-info-card .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.photo-info-card .info-item:last-child {
+    border-bottom: none;
+}
+
+.photo-info-card .label {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.photo-info-card .value {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.photo-info-card .value.error {
+    color: var(--accent-red);
+}
+
+.about-text-section {
+    padding: 2rem 0;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.bio-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.bio-card {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.bio-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: var(--accent-red);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-text {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.specs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 51, 51, 0.1);
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.spec-item:hover {
+    background: rgba(255, 51, 51, 0.15);
+    transform: translateX(5px);
+}
+
+.spec-name {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.spec-value {
+    color: var(--accent-red);
+    font-weight: 700;
+}
+
+.quote-block {
+    background: rgba(255, 51, 51, 0.05);
+    padding: 2rem;
+    border-left: 4px solid var(--accent-red);
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Manifest Page Styles */
+.manifest-hero {
+    padding: 150px 0 80px;
+    background: linear-gradient(135deg, #151515 0%, var(--bg-dark) 100%);
+    text-align: center;
+}
+
+.manifest-header {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.manifest-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.manifest-content {
+    padding: 80px 0;
+    background: var(--bg-dark);
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.article-card {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 51, 51, 0.1);
+}
+
+.article-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.article-number {
+    background: var(--accent-red);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 2px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.article-title {
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.article-text p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.article-text p:last-child {
+    margin-bottom: 0;
+}
+
+.laws-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.law-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 51, 51, 0.05);
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    transition: transform 0.3s ease;
+}
+
+.law-item:hover {
+    transform: translateX(5px);
+}
+
+.law-icon {
+    font-size: 1.2rem;
+    width: 30px;
+    text-align: center;
+}
+
+.law-text {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.oath-section {
+    background: var(--bg-card);
+    padding: 4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.oath-title {
+    color: var(--accent-red);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.oath-text {
+    color: var(--text-secondary);
+    line-height: 2;
+    margin-bottom: 2rem;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.oath-text p {
+    margin: 0.5rem 0;
+}
+
+.oath-btn {
+    margin-top: 1rem;
+    padding: 1.2rem 3rem;
+    font-size: 1.1rem;
+}
+
+/* Gallery Page Styles */
+.gallery-hero {
+    padding: 150px 0 80px;
+    background: linear-gradient(135deg, #1a1a1a 0%, var(--bg-dark) 100%);
+    text-align: center;
+}
+
+.gallery-header {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.gallery-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+}
+
+.gallery-content {
+    padding: 80px 0;
+    background: var(--bg-dark);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.gallery-item {
+    position: relative;
+}
+
+.gallery-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+}
+
+.gallery-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(255, 51, 51, 0.2);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a, #1a1a1a);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.gallery-card:hover .gallery-image {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    padding: 2rem 1.5rem 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-info {
+    text-align: center;
+}
+
+.image-title {
+    color: var(--accent-red);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.image-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.gallery-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.stats-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--accent-red);
+    border-radius: 5px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+}
+
+.stats-card .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-red);
+    margin-bottom: 1rem;
+}
+
+.stats-card .stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.4;
+}
+
+/* Анимации и утилиты */
+.pre-animate {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.animated {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Заблокированные кнопки */
+.btn.confirmed,
+.btn.refused,
+.btn.sworn {
+    cursor: not-allowed !important;
+    opacity: 0.95;
+    transform: none !important;
+}
+
+.btn.confirmed:hover,
+.btn.refused:hover,
+.btn.sworn:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn.confirmed {
+    background: linear-gradient(135deg, var(--success-color), #00cc66) !important;
+    color: #000 !important;
+}
+
+.btn.refused {
+    background: linear-gradient(135deg, #ff4444, #cc3333) !important;
+    color: #fff !important;
+}
+
+/* Уведомления */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-card);
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 10000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+    border: 1px solid;
+}
+
+.notification-success {
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.notification-error {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+.notification-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.terminal-loader {
+    text-align: center;
+}
+
+.terminal-text {
+    font-family: 'Courier New', monospace;
+    color: var(--success-color);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.progress-bar {
+    width: 300px;
+    height: 4px;
+    background: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100px;
+    background: var(--accent-red);
+    animation: scan 2s infinite linear;
+}
+
+@keyframes scan {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(400px); }
+}
+
+/* Адаптивность */
+@media (max-width: 968px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .ezhan-photo {
+        max-width: 350px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav {
+        gap: 1rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-info {
+        padding: 1.5rem;
+    }
+
+    .info-row {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quotes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero {
+        padding: 130px 0 60px;
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    .bio-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .spec-item {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .article-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .article-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .oath-section {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .oath-title {
+        font-size: 1.7rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .gallery-stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .notification {
+        right: 10px !important;
+        left: 10px !important;
+        max-width: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .quote-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .oath-section {
+        padding: 2rem 1rem;
+    }
+    
+    .law-item {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .ezhan-photo {
+        height: 250px;
+    }
+
+    .gallery-hero {
+        padding: 130px 0 60px;
+    }
+    
+    .gallery-subtitle {
+        font-size: 1rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-overlay {
+        opacity: 1;
+        padding: 1.5rem 1rem 1rem;
+    }
+
+    .progress-bar {
+        width: 250px;
+    }
+}
+
+/* Плавные переходы для интерактивных элементов */
+.gallery-card,
+.article-card,
+.bio-card,
+.stat-card,
+.quote-card,
+.stats-card {
+    transition: all 0.3s ease !important;
+}
+
+.gallery-image {
+    transition: transform 0.3s ease !important;
+}
+
+/* Улучшенные hover эффекты */
+.stat-item:hover .stat-number,
+.quote-card:hover::before {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Специальные анимации для законов */
+.law-item {
+    transition: all 0.3s ease !important;
+}
+
+/* === СЛОЖНЫЕ АНИМАЦИИ === */
+
+/* 1. Огненный текст для заголовков */
+.fire-text {
+    background: linear-gradient(45deg, #ff3333, #ff6b35, #ff9933, #ff3333);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: flame 3s linear infinite;
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+}
+
+@keyframes flame {
+    0% { background-position: 0% center; }
+    100% { background-position: 300% center; }
+}
+
+/* 2. Волновой эффект для кнопок */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* 3. Анимированный сетчатый фон */
+.animated-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.animated-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(255, 51, 51, 0.1) 50%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(255, 51, 51, 0.1) 50%, transparent 52%);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-60px, -60px); }
+}
+
+/* 4. Звёздное небо */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 5. Кастомный курсор */
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease;
+}
+
+.custom-cursor.follower {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid var(--accent-red);
+    transition: all 0.2s ease;
+}
+
+/* 6. 3D переворот карточек */
+.gallery-card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gallery-card-3d.flipped {
+    transform: rotateY(180deg);
+}
+
+.gallery-card-front,
+.gallery-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+
+.gallery-card-back {
+    background: linear-gradient(135deg, var(--accent-red), #cc0000);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: white;
+    text-align: center;
+}
+
+/* 7. Частицы */
+.particle {
+    position: absolute;
+    pointer-events: none;
+    animation: particle-float 2s ease-out forwards;
+}
+
+@keyframes particle-float {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx, 0), var(--ty, -100px)) scale(0);
+    }
+}
+
+/* 8. Терминальная анимация загрузки */
+.terminal-typing::after {
+    content: '|';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* === ПОДСВЕТКА ПРИ НАВЕДЕНИИ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ === */
+
+/* Карточки статистики */
+.stat-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(255, 51, 51, 0.2);
+    border-color: var(--accent-red);
+}
+
+/* Карточки цитат */
+.quote-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(255, 51, 51, 0.15);
+    border-color: var(--accent-red);
+}
+
+/* Карточки био */
+.bio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 51, 51, 0.1);
+    border-color: var(--accent-red);
+}
+
+/* Спецификации */
+.spec-item:hover {
+    background: rgba(255, 51, 51, 0.15);
+    transform: translateX(8px);
+    border-color: var(--accent-red);
+}
+
+/* Статьи манифеста */
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(255, 51, 51, 0.15);
+    border-color: var(--accent-red);
+}
+
+/* Законы */
+.law-item:hover {
+    background: rgba(255, 51, 51, 0.1);
+    transform: translateX(8px);
+    border-color: var(--accent-red);
+}
+
+/* Секция клятвы */
+.oath-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(255, 51, 51, 0.1);
+    border-color: var(--accent-red);
+}
+
+/* Статистика галереи */
+.stats-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(255, 51, 51, 0.2);
+    border-color: var(--accent-red);
+}
+
+/* Навигация */
+.nav-link:hover {
+    color: var(--accent-red);
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+}
+
+/* Кнопки (уже есть, но улучшим) */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 51, 51, 0.3);
+}
+
+/* Информационные строки */
+.info-row:hover {
+    background: rgba(255, 51, 51, 0.05);
+    transform: translateX(5px);
+}
+
+/* Фото Ежана */
+.ezhan-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 51, 51, 0.4);
+}
+
+/* Карточка информации под фото */
+.photo-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 51, 51, 0.1);
+    border-color: var(--accent-red);
+}
+
+/* Номера статей */
+.article-number:hover {
+    background: var(--success-color);
+    color: #000;
+    transform: scale(1.1);
+}
+
+/* Иконки законов */
+.law-icon:hover {
+    transform: scale(1.3);
+    filter: brightness(1.5);
+}
+
+/* Заголовки секций */
+.section-title:hover,
+.page-title:hover,
+.oath-title:hover {
+    text-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+}
+
+/* Подсветка для мобильных устройств */
+@media (max-width: 768px) {
+    /* На мобильных уменьшаем эффекты чтобы не мешали */
+    .stat-item:active,
+    .quote-card:active,
+    .bio-card:active,
+    .article-card:active,
+    .gallery-card:active {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 51, 51, 0.15);
+    }
+    
+    .spec-item:active,
+    .law-item:active {
+        transform: translateX(3px);
+        background: rgba(255, 51, 51, 0.1);
+    }
+}
+
+/* Плавные переходы для всех hover-эффектов */
+.stat-item,
+.quote-card,
+.bio-card,
+.spec-item,
+.article-card,
+.law-item,
+.oath-section,
+.stats-card,
+.nav-link,
+.btn,
+.info-row,
+.ezhan-photo,
+.photo-info-card,
+.article-number,
+.law-icon,
+.section-title,
+.page-title,
+.oath-title {
+    transition: all 0.3s ease !important;
+}
+
+/* Особый эффект для главной статистики */
+.stat-item:hover .stat-number {
+    transform: scale(1.2);
+    text-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
+}
+
+.stat-item:hover .stat-label {
+    color: var(--accent-red);
+    font-weight: 600;
+}
+
+/* Эффект для цитат */
+.quote-card:hover::before {
+    color: var(--accent-red);
+    opacity: 0.6;
+    transform: scale(1.1);
+}
+
+/* Эффект для кнопок принятия клятвы */
+.oath-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 255, 136, 0.4);
+}
+/* УЛУЧШЕННЫЕ СТИЛИ ДЛЯ ЧАСТИЦ */
+.particle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+    animation: particle-float var(--duration, 2s) ease-out forwards;
+    opacity: 0.9;
+    filter: blur(0.5px);
+}
+
+@keyframes particle-float {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(var(--tx, 0), var(--ty, -100px)) scale(1.2) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(var(--tx, 0) * 1.5), calc(var(--ty, -100px) * 1.5)) scale(0) rotate(360deg);
+    }
+}
+
+/* Особые эффекты для разных типов частиц */
+.particle[style*="#ff3333"] {
+    filter: blur(0.5px) brightness(1.2);
+}
+
+.particle[style*="#ff6b35"] {
+    filter: blur(0.3px) brightness(1.1);
+}
+
+.particle[style*="#ff9933"] {
+    filter: blur(0.7px) brightness(1.3);
+}
+
+.particle[style*="#ffcc33"] {
+    filter: blur(1px) brightness(1.4);
+}
+
+.particle[style*="#ffffff"] {
+    filter: blur(1.5px) brightness(2);
+    mix-blend-mode: screen;
+}
+
+/* === AI ЕЖАН СТИЛИ === */
+
+.ai-ezhan-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-ezhan-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 45%, rgba(255, 51, 51, 0.1) 50%, transparent 55%);
+    animation: aiScan 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes aiScan {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-50px, -50px) rotate(360deg); }
+}
+
+.ai-ezhan-btn {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff3333, #ff6b35) !important;
+    border: none !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+.ai-ezhan-btn:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 10px 25px rgba(255, 51, 51, 0.4) !important;
+}
+
+.ai-ezhan-btn:disabled {
+    opacity: 0.7;
+    transform: none !important;
+    cursor: not-allowed;
+}
+
+.ai-phrase {
+    transition: all 0.3s ease !important;
+    position: relative;
+}
+
+.ai-phrase::before {
+    content: '"';
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    font-size: 2rem;
+    color: var(--accent-red);
+    opacity: 0.3;
+}
+
+.ai-phrase::after {
+    content: '"';
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size: 2rem;
+    color: var(--accent-red);
+    opacity: 0.3;
+}
+
+/* Анимация для новой фразы */
+@keyframes phraseAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.ai-phrase.new-phrase {
+    animation: phraseAppear 0.5s ease-out;
+}
+
+/* Адаптивность для AI */
+@media (max-width: 768px) {
+    .ai-ezhan-container {
+        margin: 20px 10px !important;
+        padding: 15px !important;
+    }
+    
+    .ai-phrase {
+        font-size: 1.1rem !important;
+        min-height: 50px !important;
+        padding: 10px !important;
+    }
+    
+    .ai-ezhan-btn {
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+    }
+}
+/* === ЕЖАН SIMULATOR СТИЛИ === */
+
+/* Game Hero */
+.game-hero {
+    padding: 150px 0 80px;
+    background: linear-gradient(135deg, #1a1a1a 0%, var(--bg-dark) 100%);
+    text-align: center;
+}
+
+.game-header {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.game-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+    text-transform: uppercase;
+}
+
+/* Game Content */
+.game-content {
+    padding: 80px 0;
+    background: var(--bg-dark);
+}
+
+/* Прогресс бар */
+.progress-section {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.progress-bar-game {
+    width: 100%;
+    height: 20px;
+    background: var(--bg-light);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-red));
+    border-radius: 10px;
+    transition: width 0.5s ease, background 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Действия игры */
+.game-actions {
+    margin-bottom: 4rem;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.action-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.action-btn:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(255, 51, 51, 0.2);
+    border-color: var(--accent-red);
+}
+
+.action-icon {
+    font-size: 2.5rem;
+    filter: grayscale(0.3);
+    transition: filter 0.3s ease;
+}
+
+.action-btn:hover .action-icon {
+    filter: grayscale(0) brightness(1.2);
+    transform: scale(1.1);
+}
+
+.action-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.action-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Сообщения игры */
+.game-messages {
+    margin-bottom: 4rem;
+}
+
+.messages-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+.message-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-light);
+    animation: messageAppear 0.3s ease;
+}
+
+.message-item:last-child {
+    border-bottom: none;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-time {
+    color: var(--accent-red);
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.message-text {
+    color: var(--text-secondary);
+}
+
+.system-message .message-text {
+    color: var(--accent-blue);
+}
+
+.action-message .message-text {
+    color: var(--text-primary);
+}
+
+.level-up-message .message-text {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+.achievement-message .message-text {
+    color: gold;
+    font-weight: 600;
+}
+
+/* Достижения */
+.achievements-section {
+    margin-bottom: 3rem;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.achievement-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.achievement-item.unlocked {
+    opacity: 1;
+    border-color: gold;
+    background: linear-gradient(135deg, var(--bg-card), rgba(255, 215, 0, 0.1));
+}
+
+.achievement-item.locked {
+    filter: grayscale(1);
+}
+
+.achievement-item:hover {
+    transform: translateY(-3px);
+}
+
+.achievement-icon {
+    font-size: 2rem;
+    width: 50px;
+    text-align: center;
+}
+
+.achievement-info {
+    flex: 1;
+}
+
+.achievement-name {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.achievement-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Кнопка сброса */
+.reset-section {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* Адаптивность для игры */
+@media (max-width: 768px) {
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-btn {
+        padding: 1.5rem 1rem;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .messages-container {
+        max-height: 200px;
+    }
+    
+    .progress-section {
+        padding: 1.5rem;
+        margin: 0 1rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-hero {
+        padding: 130px 0 60px;
+    }
+    
+    .game-subtitle {
+        font-size: 1rem;
+    }
+    
+    .action-text {
+        font-size: 1rem;
+    }
+    
+    .achievement-item {
+        padding: 1rem;
+    }
+    
+    .achievement-icon {
+        font-size: 1.5rem;
+        width: 40px;
+    }
+}
+
+/* === УЛУЧШЕННАЯ АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ === */
+
+@media (max-width: 480px) {
+    /* Header для телефонов */
+    .header-content {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0.5rem 0;
+    }
+    
+    .logo span {
+        font-size: 1.3rem;
+        text-align: center;
+        display: block;
+    }
+    
+    .nav {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        background: rgba(255, 51, 51, 0.1);
+        border-radius: 5px;
+    }
+    
+    .header-contact {
+        font-size: 0.8rem;
+    }
+
+    /* Hero секции */
+    .hero, .about-hero, .manifest-hero, .gallery-hero, .game-hero {
+        padding: 120px 0 40px;
+    }
+    
+    .hero-title, .page-title {
+        font-size: 1.8rem !important;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-subtitle, .manifest-subtitle, .gallery-subtitle, .game-subtitle {
+        font-size: 0.9rem !important;
+        padding: 0 10px;
+    }
+
+    /* Информационные блоки */
+    .hero-info {
+        padding: 1rem;
+        margin: 0 10px 2rem;
+    }
+    
+    .info-row {
+        padding: 0.8rem 0;
+        flex-direction: column;
+        gap: 0.3rem;
+        text-align: center;
+    }
+    
+    .info-label, .info-value {
+        font-size: 0.9rem;
+    }
+
+    /* Кнопки */
+    .hero-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0 10px;
+    }
+    
+    .btn {
+        padding: 1rem 1.5rem;
+        font-size: 0.85rem;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    /* Статистика */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 10px;
+    }
+    
+    .stat-item {
+        padding: 1.5rem 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    /* Сетки карточек */
+    .quotes-grid, .articles-grid, .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 10px;
+    }
+    
+    .quote-card, .article-card, .gallery-card {
+        padding: 1.5rem 1rem;
+    }
+
+    /* About страница */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 10px;
+    }
+    
+    .ezhan-photo {
+        height: 250px;
+        max-width: 100%;
+    }
+    
+    .photo-info-card {
+        padding: 1.5rem 1rem;
+        margin: 1rem 0;
+    }
+    
+    .photo-info-card .info-item {
+        flex-direction: column;
+        gap: 0.3rem;
+        text-align: center;
+        padding: 0.8rem 0;
+    }
+    
+    .bio-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .specs-grid {
+        gap: 0.8rem;
+    }
+    
+    .spec-item {
+        flex-direction: column;
+        gap: 0.3rem;
+        text-align: center;
+        padding: 0.8rem;
+    }
+
+    /* Manifest страница */
+    .article-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .article-number {
+        min-width: 50px;
+    }
+    
+    .laws-list {
+        gap: 0.8rem;
+    }
+    
+    .law-item {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .oath-section {
+        padding: 1.5rem 1rem;
+        margin: 0 10px;
+    }
+    
+    .oath-title {
+        font-size: 1.5rem;
+    }
+    
+    .oath-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Gallery страница */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 10px;
+    }
+    
+    .gallery-card {
+        aspect-ratio: 1/1;
+    }
+    
+    .gallery-overlay {
+        opacity: 1;
+        padding: 1rem;
+    }
+    
+    .gallery-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 10px;
+    }
+    
+    .stats-card {
+        padding: 1.5rem 1rem;
+    }
+
+    /* Game страница */
+    .game-stats .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
+    .game-stats .stat-item {
+        padding: 1rem 0.5rem;
+    }
+    
+    .game-stats .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .game-stats .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .progress-section {
+        padding: 1.5rem 1rem;
+        margin: 0 10px 2rem;
+    }
+    
+    .progress-label {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 10px;
+    }
+    
+    .action-btn {
+        padding: 1.5rem 1rem;
+    }
+    
+    .action-icon {
+        font-size: 2rem;
+    }
+    
+    .action-text {
+        font-size: 1rem;
+    }
+    
+    .messages-container {
+        max-height: 200px;
+        padding: 1rem;
+        margin: 0 10px;
+    }
+    
+    .message-item {
+        padding: 0.6rem 0;
+    }
+    
+    .message-time {
+        display: block;
+        margin-bottom: 0.3rem;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        padding: 0 10px;
+    }
+    
+    .achievement-item {
+        padding: 1rem;
+    }
+    
+    .achievement-icon {
+        font-size: 1.5rem;
+        width: 40px;
+    }
+
+    /* AI Ежан */
+    .ai-ezhan-container {
+        margin: 20px 10px !important;
+        padding: 1.5rem 1rem !important;
+    }
+    
+    .ai-title {
+        font-size: 1.2rem !important;
+    }
+    
+    .ai-phrase {
+        font-size: 1rem !important;
+        min-height: 50px !important;
+        padding: 1rem !important;
+    }
+    
+    .ai-ezhan-btn {
+        padding: 1rem 1.5rem !important;
+        font-size: 0.85rem !important;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 1.5rem 0;
+    }
+    
+    .footer p {
+        font-size: 0.8rem;
+        padding: 0 10px;
+        text-align: center;
+    }
+}
+
+/* === ДОПОЛНИТЕЛЬНЫЕ ИСПРАВЛЕНИЯ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ === */
+@media (max-width: 360px) {
+    .nav-link {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .hero-title, .page-title {
+        font-size: 1.6rem !important;
+    }
+    
+    .btn {
+        padding: 0.9rem 1.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .game-stats .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* === ИСПРАВЛЕНИЯ ДЛЯ ГОРИЗОНТАЛЬНОЙ ОРИЕНТАЦИИ ТЕЛЕФОНА === */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header {
+        padding: 0.5rem 0;
+    }
+    
+    .hero, .about-hero, .manifest-hero, .gallery-hero, .game-hero {
+        padding: 100px 0 30px;
+    }
+    
+    .hero-title, .page-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .messages-container {
+        max-height: 150px;
+    }
+}
+
+/* === ИСПРАВЛЕНИЯ ДЛЯ ПЛАНШЕТОВ === */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero-title, .page-title {
+        font-size: 2.2rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .quotes-grid, .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav {
+        gap: 1.2rem;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
+    }
+}
+
+/* === УЛУЧШЕНИЯ ДЛЯ ВСЕХ УСТРОЙСТВ === */
+
+/* Убираем горизонтальный скролл */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Улучшаем читаемость текста на маленьких экранах */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    h1, h2, h3 {
+        line-height: 1.3;
+    }
+}
+
+/* Улучшаем тач-интерфейс для мобильных */
+@media (hover: none) and (pointer: coarse) {
+    .btn, .nav-link, .action-btn, .gallery-card {
+        min-height: 44px; /* Минимальный размер для пальцев */
+    }
+    
+    /* Уменьшаем hover-эффекты на тач-устройствах */
+    .stat-item:hover,
+    .quote-card:hover,
+    .bio-card:hover,
+    .article-card:hover,
+    .gallery-card:hover {
+        transform: none;
+    }
+    
+    /* Включаем трансформации только по тапу */
+    .stat-item:active,
+    .quote-card:active,
+    .bio-card:active,
+    .article-card:active,
+    .gallery-card:active,
+    .action-btn:active {
+        transform: translateY(-3px);
+    }
+}
+
+/* Исправляем проблемы с viewport на iOS */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+/* Улучшаем рендеринг шрифтов на мобильных */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Исправляем проблемы с скроллом на iOS */
+.scroll-container {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* === ИСПРАВЛЕНИЯ ДЛЯ ИГРЫ === */
+
+/* Game Content - новое расположение */
+.game-content {
+    padding: 80px 0;
+    background: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* Статистика игры */
+.game-stats {
+    order: 1;
+}
+
+.game-stats .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Прогресс бар - увеличиваем отступы */
+.progress-section {
+    order: 2;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    background: var(--bg-card);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    position: relative;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.progress-bar-game {
+    width: 100%;
+    height: 25px;
+    background: var(--bg-light);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border-light);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-red), var(--success-color));
+    border-radius: 12px;
+    transition: width 0.5s ease, background 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    width: 0%;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: progressShine 3s infinite;
+}
+
+@keyframes progressShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Действия игры */
+.game-actions {
+    order: 3;
+    margin-bottom: 2rem;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Достижения - перемещаем выше */
+.achievements-section {
+    order: 4;
+    margin-bottom: 3rem;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Сообщения игры - перемещаем после достижений */
+.game-messages {
+    order: 5;
+    margin-bottom: 3rem;
+}
+
+.messages-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    font-family: 'Courier New', monospace;
+}
+
+.message-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-light);
+    animation: messageAppear 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.message-item:last-child {
+    border-bottom: none;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-time {
+    color: var(--accent-red);
+    font-weight: 600;
+    font-size: 0.85rem;
+    min-width: 70px;
+    flex-shrink: 0;
+}
+
+.message-text {
+    color: var(--text-secondary);
+    flex: 1;
+    line-height: 1.4;
+}
+
+.system-message .message-text {
+    color: var(--accent-blue);
+    font-weight: 500;
+}
+
+.action-message .message-text {
+    color: var(--text-primary);
+}
+
+.level-up-message .message-text {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+.achievement-message .message-text {
+    color: gold;
+    font-weight: 600;
+}
+
+/* Кнопка сброса */
+.reset-section {
+    order: 6;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* === АДАПТИВНОСТЬ ДЛЯ ИГРЫ === */
+
+@media (max-width: 768px) {
+    .game-stats .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0 10px;
+    }
+    
+    .progress-section {
+        margin: 0 10px 2rem;
+        padding: 1.5rem;
+    }
+    
+    .progress-label {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        font-size: 1rem;
+    }
+    
+    .progress-bar-game {
+        height: 20px;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 10px;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        padding: 0 10px;
+    }
+    
+    .messages-container {
+        margin: 0 10px;
+        max-height: 300px;
+        padding: 1rem;
+    }
+    
+    .message-item {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .message-time {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-stats .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-stats .stat-item {
+        padding: 1rem 0.5rem;
+    }
+    
+    .game-stats .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .game-stats .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .progress-section {
+        padding: 1rem;
+    }
+    
+    .progress-bar-game {
+        height: 18px;
+    }
+    
+    .actions-grid {
+        gap: 0.8rem;
+    }
+    
+    .action-btn {
+        padding: 1.2rem 0.8rem;
+    }
+    
+    .action-icon {
+        font-size: 1.8rem;
+    }
+    
+    .action-text {
+        font-size: 0.9rem;
+    }
+    
+    .messages-container {
+        max-height: 250px;
+        font-size: 0.85rem;
+    }
+}
+
+/* === УЛУЧШЕНИЯ ДЛЯ ОЧЕНЬ МАЛЕНЬКИХ ЭКРАНОВ === */
+@media (max-width: 360px) {
+    .game-stats .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .progress-label {
+        font-size: 0.9rem;
+    }
+    
+    .action-text {
+        font-size: 0.85rem;
+    }
+    
+    .achievement-name {
+        font-size: 0.9rem;
+    }
+    
+    .achievement-desc {
+        font-size: 0.8rem;
+    }
+}
+
+/* === AI ЕЖАН СТИЛИ === */
+
+.ai-ezhan-container {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--accent-red);
+    border-radius: 10px;
+}
+
+.ai-ezhan-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 45%, rgba(255, 51, 51, 0.1) 50%, transparent 55%);
+    animation: aiScan 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes aiScan {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-50px, -50px) rotate(360deg); }
+}
+
+.ai-title {
+    color: var(--accent-red);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+}
+
+.ai-phrase {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: rgba(255, 51, 51, 0.05);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.ai-phrase::before {
+    content: '"';
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    font-size: 2rem;
+    color: var(--accent-red);
+    opacity: 0.3;
+}
+
+.ai-phrase::after {
+    content: '"';
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size: 2rem;
+    color: var(--accent-red);
+    opacity: 0.3;
+}
+
+.ai-ezhan-btn {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff3333, #ff6b35) !important;
+    border: none !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    padding: 12px 24px !important;
+}
+
+.ai-ezhan-btn:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 10px 25px rgba(255, 51, 51, 0.4) !important;
+}
+
+.ai-ezhan-btn:disabled {
+    opacity: 0.7;
+    transform: none !important;
+    cursor: not-allowed;
+}
+
+/* Адаптивность для AI */
+@media (max-width: 768px) {
+    .ai-ezhan-container {
+        margin: 20px 10px !important;
+        padding: 15px !important;
+    }
+    
+    .ai-phrase {
+        font-size: 1.1rem !important;
+        min-height: 50px !important;
+        padding: 10px !important;
+    }
+    
+    .ai-ezhan-btn {
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+    }
+}
+/* === НАСТРОЙКИ ЕЖАНА === */
+
+/* Кнопка настроек */
+
+#settings-btn {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    background: var(--accent-red) !important;
+    border: none !important;
+    color: white !important;
+    font-size: 1.5rem !important;
+    cursor: pointer !important;
+    z-index: 10000 !important;
+    box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3) !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#settings-btn:hover {
+    transform: scale(1.1) rotate(90deg) !important;
+    box-shadow: 0 6px 20px rgba(255, 51, 51, 0.5) !important;
+}
+
+/* Панель настроек */
+.settings-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100vh;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border-color);
+    z-index: 9999;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+    display: none;
+}
+
+.settings-panel.active {
+    display: block;
+    transform: translateX(0);
+}
+
+.settings-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-dark);
+}
+
+.settings-header h3 {
+    color: var(--accent-red);
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+#settings-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+#settings-close-btn:hover {
+    color: var(--accent-red);
+    transform: scale(1.1);
+}
+
+.settings-content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    height: calc(100vh - 80px);
+}
+
+.setting-group {
+    margin-bottom: 2rem;
+}
+
+.setting-group label {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Кнопки темы */
+.theme-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.theme-btn {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.theme-btn:hover {
+    background: var(--accent-red);
+    color: white;
+    border-color: var(--accent-red);
+    transform: translateY(-2px);
+}
+
+.theme-btn.active {
+    background: var(--accent-red);
+    color: white;
+    border-color: var(--accent-red);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(255, 51, 51, 0.3);
+}
+
+/* Переключатели */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-light);
+    transition: .4s;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: var(--text-secondary);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: white;
+}
+
+/* Кнопка теста уведомлений */
+#test-notification-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Адаптивность для настроек */
+@media (max-width: 480px) {
+    .settings-panel {
+        width: 100vw;
+    }
+    
+    #settings-btn {
+        top: 15px !important;
+        right: 15px !important;
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.3rem !important;
+    }
+    
+    .settings-content {
+        padding: 1rem;
+    }
+}
+
+/* Кнопки темы */
+.theme-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.theme-btn {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.theme-btn:hover {
+    background: var(--accent-red);
+    color: white;
+    border-color: var(--accent-red);
+    transform: translateY(-2px);
+}
+
+.theme-btn.active {
+    background: var(--accent-red);
+    color: white;
+    border-color: var(--accent-red);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(255, 51, 51, 0.3);
+}
+
+/* Переключатели */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-light);
+    transition: .4s;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: var(--text-secondary);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: white;
+}
+
+/* Кнопка теста уведомлений */
+#test-notification-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Адаптивность для настроек */
+@media (max-width: 480px) {
+    .settings-panel {
+        width: 100vw;
+    }
+    
+    #settings-btn {
+        top: 15px !important;
+        right: 15px !important;
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.3rem !important;
+    }
+    
+    .settings-content {
+        padding: 1rem;
+    }
+}
+/* === ПРИЯТНАЯ БЕЖЕВАЯ ТЕМА === */
+[data-theme="light"] {
+    --bg-dark: #fdf6e3;
+    --bg-card: #fffdf5;
+    --bg-light: #f5ebd8;
+    --text-primary: #5c4b37;
+    --text-secondary: #8c7b69;
+    --text-muted: #a89984;
+    --accent-red: #d65d0e;
+    --accent-blue: #458588;
+    --border-color: #e5d9c4;
+    --border-light: #f0e6d2;
+    --success-color: #689d6a;
+}
+
+[data-theme="light"] .header {
+    background: #fffdf5;
+    border-bottom: 1px solid #e5d9c4;
+    box-shadow: 0 1px 3px rgba(92, 75, 55, 0.1);
+}
+
+[data-theme="light"] .logo span {
+    color: #5c4b37;
+    font-weight: 700;
+}
+
+[data-theme="light"] .nav-link {
+    color: #8c7b69;
+    font-weight: 500;
+}
+
+[data-theme="light"] .nav-link:hover,
+[data-theme="light"] .nav-link.active {
+    color: #d65d0e;
+    text-shadow: 0 0 8px rgba(214, 93, 14, 0.2);
+}
+
+[data-theme="light"] .header-contact {
+    color: #a89984;
+    font-weight: 500;
+}
+
+[data-theme="light"] .hero,
+[data-theme="light"] .about-hero,
+[data-theme="light"] .manifest-hero,
+[data-theme="light"] .gallery-hero,
+[data-theme="light"] .game-hero {
+    background: linear-gradient(135deg, #fffdf5 0%, #fdf6e3 100%);
+}
+
+[data-theme="light"] .hero-title,
+[data-theme="light"] .page-title {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .fire-text {
+    background: linear-gradient(45deg, #d65d0e, #fe8019, #d65d0e);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 10px rgba(214, 93, 14, 0.1);
+}
+
+[data-theme="light"] .hero-subtitle,
+[data-theme="light"] .manifest-subtitle,
+[data-theme="light"] .gallery-subtitle,
+[data-theme="light"] .game-subtitle {
+    color: #8c7b69;
+}
+
+[data-theme="light"] .hero-info {
+    background: #fffdf5;
+    border: 1px solid #e5d9c4;
+    box-shadow: 0 4px 6px rgba(92, 75, 55, 0.05);
+}
+
+[data-theme="light"] .info-row {
+    border-bottom: 1px solid #f5ebd8;
+}
+
+[data-theme="light"] .info-label {
+    color: #8c7b69;
+    font-weight: 500;
+}
+
+[data-theme="light"] .info-value {
+    color: #5c4b37;
+    font-weight: 600;
+}
+
+[data-theme="light"] .info-value.error {
+    color: #d65d0e;
+}
+
+[data-theme="light"] .btn-primary {
+    background: linear-gradient(135deg, #d65d0e, #fe8019);
+    color: white;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(214, 93, 14, 0.3);
+}
+
+[data-theme="light"] .btn-primary:hover {
+    background: linear-gradient(135deg, #b5500c, #e57216);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(214, 93, 14, 0.4);
+}
+
+[data-theme="light"] .btn-secondary {
+    background: transparent;
+    color: #8c7b69;
+    border: 1px solid #d5c4a1;
+    font-weight: 500;
+}
+
+[data-theme="light"] .btn-secondary:hover {
+    background: #f5ebd8;
+    border-color: #d65d0e;
+    color: #d65d0e;
+}
+
+[data-theme="light"] .stat-item,
+[data-theme="light"] .quote-card,
+[data-theme="light"] .bio-card,
+[data-theme="light"] .article-card,
+[data-theme="light"] .gallery-card,
+[data-theme="light"] .stats-card,
+[data-theme="light"] .ai-ezhan-container {
+    background: #fffdf5;
+    border: 1px solid #e5d9c4;
+    box-shadow: 0 4px 6px rgba(92, 75, 55, 0.05);
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .stat-item:hover,
+[data-theme="light"] .quote-card:hover,
+[data-theme="light"] .bio-card:hover,
+[data-theme="light"] .article-card:hover,
+[data-theme="light"] .gallery-card:hover,
+[data-theme="light"] .stats-card:hover,
+[data-theme="light"] .ai-ezhan-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(92, 75, 55, 0.1);
+    border-color: #d65d0e;
+}
+
+[data-theme="light"] .stat-number {
+    color: #d65d0e;
+}
+
+[data-theme="light"] .stat-label {
+    color: #8c7b69;
+}
+
+[data-theme="light"] .section-title {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .quote-text {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .quote-author {
+    color: #8c7b69;
+}
+
+[data-theme="light"] .quote-card::before {
+    color: #d65d0e;
+    opacity: 0.2;
+}
+
+[data-theme="light"] .card-title {
+    color: #d65d0e;
+}
+
+[data-theme="light"] .card-text {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .spec-item {
+    background: rgba(214, 93, 14, 0.05);
+    border: 1px solid #fbd0a9;
+}
+
+[data-theme="light"] .spec-name {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .spec-value {
+    color: #d65d0e;
+}
+
+[data-theme="light"] .article-number {
+    background: #d65d0e;
+    color: white;
+}
+
+[data-theme="light"] .article-title {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .law-item {
+    background: rgba(214, 93, 14, 0.05);
+    border: 1px solid #fbd0a9;
+}
+
+[data-theme="light"] .law-text {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .oath-section {
+    background: #fffdf5;
+    border: 1px solid #e5d9c4;
+}
+
+[data-theme="light"] .oath-title {
+    color: #d65d0e;
+}
+
+[data-theme="light"] .oath-text {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .gallery-image {
+    background: linear-gradient(135deg, #fdf6e3, #f5ebd8, #fdf6e3);
+}
+
+[data-theme="light"] .image-title {
+    color: #d65d0e;
+}
+
+[data-theme="light"] .image-desc {
+    color: #8c7b69;
+}
+
+[data-theme="light"] .footer {
+    background: #fdf6e3;
+    border-top: 1px solid #e5d9c4;
+}
+
+[data-theme="light"] .footer p {
+    color: #8c7b69;
+}
+
+[data-theme="light"] .ai-title {
+    color: #d65d0e;
+}
+
+[data-theme="light"] .ai-phrase {
+    background: rgba(214, 93, 14, 0.05);
+    border: 1px solid #fbd0a9;
+    color: #5c4b37;
+}
+
+[data-theme="light"] .ai-ezhan-btn {
+    background: linear-gradient(135deg, #d65d0e, #fe8019) !important;
+}
+
+[data-theme="light"] .settings-panel {
+    background: #fffdf5;
+    border-left: 1px solid #e5d9c4;
+    box-shadow: -5px 0 15px rgba(92, 75, 55, 0.1);
+}
+
+[data-theme="light"] .settings-header {
+    background: #fdf6e3;
+    border-bottom: 1px solid #e5d9c4;
+}
+
+[data-theme="light"] .theme-btn {
+    background: #fdf6e3;
+    border: 1px solid #e5d9c4;
+    color: #8c7b69;
+}
+
+[data-theme="light"] .theme-btn.active {
+    background: #d65d0e;
+    color: white;
+}
+
+[data-theme="light"] .progress-bar-game {
+    background: #e5d9c4;
+}
+
+[data-theme="light"] .messages-container {
+    background: #fffdf5;
+    border: 1px solid #e5d9c4;
+}
+
+[data-theme="light"] .message-text {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .achievement-item {
+    background: #fffdf5;
+    border: 1px solid #e5d9c4;
+}
+
+[data-theme="light"] .achievement-name {
+    color: #5c4b37;
+}
+
+[data-theme="light"] .achievement-desc {
+    color: #8c7b69;
+}
+
+[data-theme="light"] .fire-text {
+    background: linear-gradient(45deg, #d65d0e, #fe8019, #d65d0e);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: flame 3s linear infinite;
+}
+
+/* === УЛЬТРА-АДАПТИВНОСТЬ И ПЛАВНОСТЬ === */
+
+/* Плавные переходы для ВСЕХ элементов */
+* {
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Улучшенная плавность скролла */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Улучшенная анимация появления элементов */
+.pre-animate {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+}
+
+.animated {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Улучшенные hover эффекты с плавностью */
+.stat-item, .quote-card, .bio-card, .article-card, 
+.gallery-card, .stats-card, .action-btn {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Улучшенные кнопки */
+.btn {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+/* Улучшенная навигация */
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-red);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Улучшенные карточки с градиентными границами */
+.stat-item, .quote-card, .bio-card, .article-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+.stat-item::before, .quote-card::before, .bio-card::before, .article-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-red), transparent, var(--accent-red));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-item:hover::before, .quote-card:hover::before, 
+.bio-card:hover::before, .article-card:hover::before {
+    opacity: 1;
+}
+
+/* Улучшенный прогресс-бар */
+.progress-fill {
+    transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.8s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Улучшенные уведомления */
+.notification {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* Улучшенная анимация частиц */
+.particle {
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Улучшенная адаптивность для очень маленьких экранов */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 10px !important;
+    }
+    
+    .hero-title, .page-title {
+        font-size: 1.5rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .hero-subtitle, .manifest-subtitle, .gallery-subtitle, .game-subtitle {
+        font-size: 0.8rem !important;
+    }
+    
+    .btn {
+        padding: 0.8rem 1.2rem !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem !important;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem !important;
+    }
+    
+    .nav-link {
+        font-size: 0.75rem !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+    
+    #settings-btn {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 1rem !important;
+        right: 10px !important;
+    }
+}
+
+/* Улучшенная адаптивность для планшетов */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 95% !important;
+    }
+    
+    .hero-title, .page-title {
+        font-size: 2.8rem !important;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+    }
+    
+    .quotes-grid, .articles-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* Улучшенная поддержка темной/светлой темы */
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+        /* Добавьте здесь стили для темной темы */
+        background: var(--bg-dark);
+        color: var(--text-dark);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    [data-theme="auto"] {
+        /* Добавьте здесь стили для светлой темы */
+        background: var(--bg-light);
+        color: var(--text-light);
+    }
+}
+
+/* Улучшенная доступность */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Улучшенный focus для доступности */
+.btn:focus, .nav-link:focus, .action-btn:focus {
+    outline: 2px solid var(--accent-red);
+    outline-offset: 2px;
+}
+
+/* Улучшенное переключение тем */
+[data-theme="light"] .nav-link::after {
+    background: var(--accent-red);
+}
+
+/* Улучшенная анимация загрузки */
+#preloader {
+    background: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--accent-red);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Улучшенные медиа-запросы для ландшафтной ориентации */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header {
+        padding: 0.3rem 0 !important;
+    }
+    
+    .hero, .about-hero, .manifest-hero, .gallery-hero, .game-hero {
+        padding: 80px 0 20px !important;
+    }
+    
+    .hero-title, .page-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 0.5rem !important;
+    }
+    
+    .stat-item {
+        padding: 0.8rem 0.5rem !important;
+    }
+    
+    .stat-number {
+        font-size: 1.2rem !important;
+    }
+    
+    .stat-label {
+        font-size: 0.6rem !important;
+    }
+}
+/* === ИСПРАВЛЕНИЯ ДЛЯ СТРАНИЦЫ "О ЕЖАНЕ" === */
+
+/* Убираем подсветку для спецификаций на странице "О Ежане" */
+.about-content .spec-item {
+    background: var(--bg-light) !important;
+    border: 1px solid var(--border-color) !important;
+    transform: none !important;
+}
+
+.about-content .spec-item:hover {
+    background: var(--bg-light) !important;
+    border: 1px solid var(--border-color) !important;
+    transform: none !important;
+}
+
+/* Стиль как на втором скрине - простые строки с разделителями */
+.about-content .specs-grid {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.about-content .spec-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    background: transparent !important;
+    transition: none !important;
+}
+
+.about-content .spec-item:last-child {
+    border-bottom: none;
+}
+
+.about-content .spec-item:hover {
+    background: rgba(255, 51, 51, 0.03) !important;
+}
+
+.about-content .spec-name {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.about-content .spec-value {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.about-content .spec-value.error {
+    color: var(--accent-red);
+}
+
+/* Сохраняем подсветку в других местах */
+.stats-grid .stat-item:hover,
+.quotes-grid .quote-card:hover,
+.bio-section .bio-card:hover,
+.articles-grid .article-card:hover,
+.gallery-grid .gallery-card:hover,
+.game-actions .action-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 51, 51, 0.15);
+    border-color: var(--accent-red);
+}
+/* === ИСПРАВЛЕНИЯ ДЛЯ ЦИТАТ НА СТРАНИЦЕ "О ЕЖАНЕ" === */
+
+/* Убираем подсветку для цитат на странице "О Ежане" */
+.about-content .quote-block {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.about-content .quote-block:hover {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Стиль для цитаты как на втором скрине - простой блок */
+.about-content .quote-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.about-content .quote-block::before {
+    content: '"';
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-size: 4rem;
+    color: var(--accent-red);
+    opacity: 0.2;
+    line-height: 1;
+}
+
+.about-content .quote-block::after {
+    content: '"';
+    position: absolute;
+    bottom: 1rem;
+    right: 1.5rem;
+    font-size: 4rem;
+    color: var(--accent-red);
+    opacity: 0.2;
+    line-height: 1;
+}
+
+/* Текст цитаты */
+.about-content .quote-block {
+    color: var(--text-primary);
+    font-style: italic;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Для светлой темы */
+[data-theme="light"] .about-content .quote-block {
+    background: #fffdf5;
+    border: 1px solid #e5d9c4;
+}
+
+[data-theme="light"] .about-content .quote-block::before,
+[data-theme="light"] .about-content .quote-block::after {
+    color: #d65d0e;
+    opacity: 0.3;
+}
+
+/* Сохраняем подсветку в других местах */
+.quotes-section .quote-card:hover,
+.articles-grid .article-card:hover,
+.gallery-grid .gallery-card:hover,
+.game-actions .action-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 51, 51, 0.15);
+    border-color: var(--accent-red);
+}
+/* === ИСПРАВЛЕНИЯ ДЛЯ ЦИТАТЫ НА СТРАНИЦЕ "О ЕЖАНЕ" === */
+
+/* Убираем кавычки у цитаты */
+.about-content .quote-block::before,
+.about-content .quote-block::after {
+    display: none !important;
+}
+
+/* Чистый стиль для цитаты без кавычек */
+.about-content .quote-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.about-content .quote-block {
+    color: var(--text-primary);
+    font-style: italic;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* Для светлой темы */
+[data-theme="light"] .about-content .quote-block {
+    background: #fffdf5;
+    border: 1px solid #e5d9c4;
+}
+/* === СТИЛИ ДЛЯ УВЕДОМЛЕНИЙ СТОЛБИКОМ === */
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.achievement-notification {
+    font-family: 'Inter', sans-serif;
+    transition: top 0.3s ease !important;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+}
+
+.notification-text {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .achievement-notification {
+        right: 10px !important;
+        left: 10px !important;
+        max-width: none !important;
+        min-width: auto !important;
+    }
+}

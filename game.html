@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ежан Simulator | ЕЖАН СИСТЕМС</title>
+    <link rel="stylesheet" href="css/style-new.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- PWA Meta Tags -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff3333">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ЕЖАН">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span>ЕЖАН СИСТЕМС</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Главная</a>
+                    <a href="about.html" class="nav-link">О Ежане</a>
+                    <a href="manifest.html" class="nav-link">Манифест</a>
+                    <a href="gallery.html" class="nav-link">Галерея</a>
+                    <a href="game.html" class="nav-link">Simulator</a>
+                </nav>
+                <div class="header-contact">
+                    <span class="contact-phone">Статус: Дегенерат</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Game Hero -->
+    <section class="game-hero">
+        <div class="container">
+            <div class="game-header">
+                <h1 class="page-title fire-text">ЕЖАН SIMULATOR</h1>
+                <p class="game-subtitle">ТЫ МОЖЕШЬ ПОПЫТАТЬСЯ СТАТЬ ЕЖАНОМ, НО У ТЕБЯ НЕ ПОЛУЧИТСЯ ДОСТИГНУТЬ ЕГО УРОВНЯ МАКСИМАЛЬНОЙ ДЕГЕНЕРАЦИИ</p>
+            </div>
+        </div>
+    </section>
+
+<!-- Game Content -->
+<section class="game-content">
+    <div class="container">
+        <!-- Статистика игры -->
+        <div class="game-stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="degeneration-level">0</div>
+                    <div class="stat-label">УРОВЕНЬ ДЕГЕНЕРАЦИИ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="fail-count">0</div>
+                    <div class="stat-label">КОЛИЧЕСТВО ПРОЁБОВ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="brain-cells">100</div>
+                    <div class="stat-label">ОСТАТКИ РАЗУМА</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="game-level">1</div>
+                    <div class="stat-label">УРОВЕНЬ ИГРЫ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Прогресс бар -->
+        <div class="progress-section">
+            <div class="progress-label">
+                <span>ПРОГРЕСС ДЕГЕНЕРАЦИИ:</span>
+                <span id="progress-percent">0%</span>
+            </div>
+            <div class="progress-bar-game">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Действия игры -->
+        <div class="game-actions">
+            <h2 class="section-title">ДЕЙСТВИЯ ДЕГЕНЕРАТА</h2>
+            <div class="actions-grid">
+                <button class="action-btn" id="action-fail" data-type="fail">
+                    <span class="action-icon">💀</span>
+                    <span class="action-text">СОВЕРШИТЬ ПРОЁБ</span>
+                    <span class="action-desc">+10 к дегенерации</span>
+                </button>
+
+                <button class="action-btn" id="action-think" data-type="think">
+                    <span class="action-icon">🤔</span>
+                    <span class="action-text">ПОПЫТАТЬСЯ ПОДУМАТЬ</span>
+                    <span class="action-desc">-5 к разуму</span>
+                </button>
+
+                <button class="action-btn" id="action-blame" data-type="blame">
+                    <span class="action-icon">🔪</span>
+                    <span class="action-text">ОБВИНИТЬ ДРУГИХ</span>
+                    <span class="action-desc">+15 к дегенерации</span>
+                </button>
+
+                <button class="action-btn" id="action-repeat" data-type="repeat">
+                    <span class="action-icon">♾️</span>
+                    <span class="action-text">ПОВТОРИТЬ ОШИБКУ</span>
+                    <span class="action-desc">+20 к дегенерации</span>
+                </button>
+            </div>
+        </div>
+
+<!-- Достижения -->
+<div class="achievements-section">
+    <h2 class="section-title">ДОСТИЖЕНИЯ</h2>
+    <div class="achievements-grid" id="achievements-grid">
+        <div class="achievement-item locked" data-achievement="first-fail">
+            <span class="achievement-icon">🎯</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Первый проёб</div>
+                <div class="achievement-desc">Соверши первый проёб</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="brain-dead">
+            <span class="achievement-icon">🧠</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Окончательно безмозглый</div>
+                <div class="achievement-desc">Достигни 0% разума</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="pro-degenerate">
+            <span class="achievement-icon">👑</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Про дегенерат</div>
+                <div class="achievement-desc">Достигни 500 очков дегенерации</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="god-mode">
+            <span class="achievement-icon">⚡</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Режим бога</div>
+                <div class="achievement-desc">Достигни 1000 очков дегенерации</div>
+            </div>
+        </div>
+
+        <!-- Новые достижения -->
+        <div class="achievement-item locked" data-achievement="fail-master">
+            <span class="achievement-icon">💀</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Мастер проёбов</div>
+                <div class="achievement-desc">50 проёбов</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="thinking-tryhard">
+            <span class="achievement-icon">🤔</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Пытался думать</div>
+                <div class="achievement-desc">Меньше 20% разума</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="eternal-failure">
+            <span class="achievement-icon">♾️</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Вечный неудачник</div>
+                <div class="achievement-desc">100 проёбов</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="no-return">
+            <span class="achievement-icon">🚷</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Точка невозврата</div>
+                <div class="achievement-desc">2000 очков дегенерации</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="ultimate-chaos">
+            <span class="achievement-icon">🌪️</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Абсолютный хаос</div>
+                <div class="achievement-desc">5000 очков дегенерации</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="brain-explosion">
+            <span class="achievement-icon">💥</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Взрыв мозга</div>
+                <div class="achievement-desc">Меньше 5% разума</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="fail-god">
+            <span class="achievement-icon">😈</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Бог провалов</div>
+                <div class="achievement-desc">500 проёбов</div>
+            </div>
+        </div>
+
+        <div class="achievement-item locked" data-achievement="system-breaker">
+            <span class="achievement-icon">💻</span>
+            <div class="achievement-info">
+                <div class="achievement-name">Разрушитель систем</div>
+                <div class="achievement-desc">10000 очков дегенерации</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Сообщения игры -->
+        <div class="game-messages">
+            <h2 class="section-title">ЖУРНАЛ ДЕГЕНЕРАЦИИ</h2>
+            <div class="messages-container" id="messages-container">
+                <div class="message-item system-message">
+                    <span class="message-time">[СИСТЕМА]:</span>
+                    <span class="message-text">ИГРА "ЕЖАН SIMULATOR" ЗАПУЩЕНА. ГОТОВЬСЯ СТАТЬ ДЕГЕНЕРАТОМ!</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопка сброса -->
+        <div class="reset-section">
+            <button class="btn btn-secondary" id="reset-game">
+                🔄 НАЧАТЬ ЗАНОВО
+            </button>
+        </div>
+    </div>
+</section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>СИСТЕМА ЕЖАНА © 2025 | ДЕГЕНЕРАЦИЯ - ЭТО ИГРА</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/ezhan-simulator.js"></script>
+    <script src="js/pwa.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/game-enhancements.js"></script>
+</body>
+</html>
