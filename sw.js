@@ -1,58 +1,74 @@
-// Service Worker для ЕЖАН СИСТЕМС
-const CACHE_NAME = 'ezhan-system-v1.0';
+// sw.js - Service Worker для ЕЖАН СИСТЕМС
+const CACHE_NAME = 'ezhan-pwa-v1.2';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/about.html',
-    '/manifest.html', 
-    '/gallery.html',
-    '/game.html',
-    '/css/style-new.css',
-    '/js/main.js',
-    '/js/ezhan-simulator.js',
-    '/js/pwa.js',
-    '/js/settings.js',
-    '/manifest.json',
-    '/icons/icon-192.png',
-    '/icons/icon-512.png'
+  './',
+  './index.html',
+  './game.html',
+  './about.html',
+  './gallery.html',
+  './manifest.html',
+  
+  // CSS
+  './css/style-new.css',
+  
+  // JS
+  './js/main.js',
+  './js/pwa.js',
+  './js/game-enhancements.js',
+  './js/ezhan-simulator.js',
+  './js/gallery.js',
+  './js/about.js',
+  './js/settings.js',
+  './js/ai-exhan.js',
+  './js/manifest.js',
+  
+  // Manifest
+  './manifest.json',
+  
+  // Иконки
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  
+  // Изображения (основные)
+  './images/face.jpg'
 ];
 
-// Установка Service Worker
-self.addEventListener('install', function(event) {
-    console.log('🔄 Service Worker: Установка для ЕЖАН СИСТЕМС');
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(function(cache) {
-                console.log('💾 Кеширование файлов Ежана');
-                return cache.addAll(urlsToCache);
-            })
-    );
+self.addEventListener('install', event => {
+  console.log('🔄 Service Worker: Установка...');
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('✅ Кэш открыт');
+        return cache.addAll(urlsToCache);
+      })
+      .catch(error => {
+        console.log('❌ Ошибка кэширования:', error);
+      })
+  );
 });
 
-// Активация - очистка старых кешей
-self.addEventListener('activate', function(event) {
-    console.log('🚀 Service Worker: Активация');
-    event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            return Promise.all(
-                cacheNames.map(function(cacheName) {
-                    if (cacheName !== CACHE_NAME) {
-                        console.log('🗑️ Удаление старого кеша:', cacheName);
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        // Возвращаем кэш или делаем запрос
+        return response || fetch(event.request);
+      })
+  );
+});
+
+self.addEventListener('activate', event => {
+  console.log('✅ Service Worker активирован');
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            console.log('🗑️ Удаляем старый кэш:', cacheName);
+            return caches.delete(cacheName);
+          }
         })
-    );
-});
-
-// Перехват запросов
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request)
-            .then(function(response) {
-                // Возвращаем кеш или делаем обычный запрос
-                return response || fetch(event.request);
-            })
-    );
+      );
+    })
+  );
 });
