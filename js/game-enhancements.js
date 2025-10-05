@@ -39,7 +39,7 @@ class GameEnhancements {
     setupGameImprovements() {
         this.setupSmoothAnimations();
         this.setupEnhancedParticles();
-        this.setupGameSounds();
+        this.setupVibration();
     }
 
     // 🎯 ПЛАВНЫЕ АНИМАЦИИ
@@ -133,103 +133,37 @@ class GameEnhancements {
         };
     }
 
-// 🔊 ЗВУКИ И ВИБРАЦИЯ
-setupGameSounds() {
-    this.sounds = {
-        // Оставляем только эти звуки, убираем звук для кнопок
-        achievement: this.createSound(1200, 0.3),
-        levelup: this.createSound(1000, 0.4)
-    };
-
-    this.setupVibration();
-}
-
-setupVibration() {
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('.action-btn')) {
-            this.vibrate();
-        }
-    });
-}
-
-// 📳 ВИБРАЦИЯ ДЛЯ КНОПОК
-vibrate() {
-    // Проверяем поддержку вибрации и настройки пользователя
-    if (!navigator.vibrate || localStorage.getItem('game-vibration-enabled') === 'false') {
-        return;
-    }
-    
-    try {
-        // Легкая короткая вибрация (50ms)
-        navigator.vibrate(50);
-    } catch (e) {
-        console.log('📳 Вибрация не поддерживается');
-    }
-}
-
-createSound(frequency, duration) {
-    return function() {
-        try {
-            if (localStorage.getItem('game-sound-enabled') === 'false') return;
-            
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.frequency.value = frequency;
-            oscillator.type = 'sine';
-            
-            gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + duration);
-        } catch (e) {
-            console.log('🔇 Web Audio API не поддерживается');
-        }
-    };
-}
-
-// Убираем старый setupSoundButtons, так как звуки кнопок больше не нужны
-
-    createSound(frequency, duration) {
-        return function() {
-            try {
-                if (localStorage.getItem('game-sound-enabled') === 'false') return;
-                
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.value = frequency;
-                oscillator.type = 'sine';
-                
-                gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
-                
-                oscillator.start(audioContext.currentTime);
-                oscillator.stop(audioContext.currentTime + duration);
-            } catch (e) {
-                console.log('🔇 Web Audio API не поддерживается');
-            }
-        };
-    }
-
-    setupSoundButtons() {
+    // 📳 ВИБРАЦИЯ
+    setupVibration() {
         document.addEventListener('click', (e) => {
             if (e.target.closest('.action-btn')) {
-                const actionType = e.target.closest('.action-btn').dataset.type;
-                if (this.sounds[actionType]) {
-                    this.sounds[actionType]();
-                }
+                this.vibrate();
             }
         });
+    }
+
+    // 📳 ВИБРАЦИЯ ДЛЯ КНОПОК
+    vibrate() {
+        // Проверяем поддержку вибрации и настройки пользователя
+        if (!navigator.vibrate) return;
+        
+        // Проверяем настройки вибрации
+        const ezhanSettings = window.ezhanSettings;
+        if (ezhanSettings && !ezhanSettings.settings.vibration) {
+            return;
+        }
+        
+        // Проверяем старые настройки для совместимости
+        if (localStorage.getItem('game-vibration-enabled') === 'false') {
+            return;
+        }
+        
+        try {
+            // Легкая короткая вибрация (50ms)
+            navigator.vibrate(50);
+        } catch (e) {
+            console.log('📳 Вибрация не поддерживается');
+        }
     }
 
     // 🎮 НОВЫЕ ФИЧИ
@@ -276,7 +210,7 @@ createSound(frequency, duration) {
                 this.processedComboMilestones.add(milestone);
                 this.createFireworks(milestone);
                 
-                if (window.NotificationManager) {
+                if (this.shouldShowNotification()) {
                     NotificationManager.show(`🎇 COMBO ${milestone}! ФЕЙЕРВЕРК!`, 'success');
                 }
             }
@@ -410,7 +344,7 @@ createSound(frequency, duration) {
             window.ezhanGame.gameState.degeneration += bonus;
             window.ezhanGame.updateUI();
             
-            if (window.NotificationManager) {
+            if (this.shouldShowNotification()) {
                 NotificationManager.show(`🎯 COMBO BONUS! +${bonus} дегенерации`, 'success');
             }
         }
@@ -436,7 +370,7 @@ createSound(frequency, duration) {
         
         const achievementName = this.achievementNames[achievementId] || 'Новое достижение';
         
-        if (window.NotificationManager) {
+        if (this.shouldShowNotification()) {
             NotificationManager.show(`🏆 ДОСТИЖЕНИЕ: ${achievementName}`, 'success');
         } else {
             this.showFallbackNotification(`🏆 ${achievementName}`);
@@ -502,6 +436,22 @@ createSound(frequency, duration) {
             const centerY = window.innerHeight / 2;
             window.createParticles(centerX, centerY, 30, 'achievement');
         }
+    }
+
+    // ПРОВЕРКА НАСТРОЕК УВЕДОМЛЕНИЙ
+    shouldShowNotification() {
+        // Проверяем настройки уведомлений
+        const ezhanSettings = window.ezhanSettings;
+        if (ezhanSettings && !ezhanSettings.settings.notifications) {
+            return false;
+        }
+        
+        // Проверяем старые настройки для совместимости
+        if (localStorage.getItem('game-notifications-enabled') === 'false') {
+            return false;
+        }
+        
+        return true;
     }
 }
 

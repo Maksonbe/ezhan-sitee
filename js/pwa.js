@@ -12,10 +12,9 @@ class EzhanPWA {
         this.checkEnvironment();
         this.setupOfflineDetection();
         this.addInstallPrompt();
-        this.forceShowInstallButton(); // Принудительно показываем кнопку для теста
+        this.forceShowInstallButton();
     }
 
-    // Проверка окружения
     checkEnvironment() {
         const isLocalFile = window.location.protocol === 'file:';
         const isLocalhost = window.location.hostname === 'localhost' || 
@@ -23,7 +22,6 @@ class EzhanPWA {
         
         if (isLocalFile) {
             console.log('⚠️ Запуск в file:// режиме. Service Worker отключен.');
-            this.showNotification('⚠️ Для полной работы откройте через HTTP-сервер', 'error');
             return;
         }
         
@@ -34,7 +32,6 @@ class EzhanPWA {
         }
     }
 
-    // Регистрация Service Worker
     registerServiceWorker() {
         if ('serviceWorker' in navigator) {
             console.log('🔧 Регистрируем Service Worker...');
@@ -42,7 +39,7 @@ class EzhanPWA {
             navigator.serviceWorker.register('./sw.js')
                 .then(registration => {
                     console.log('✅ Service Worker зарегистрирован успешно:', registration);
-                    //this.showNotification('🔄 ЕЖАН PWA активирован!', 'success');
+                    // УБРАНО УВЕДОМЛЕНИЕ АКТИВАЦИИ
                 })
                 .catch(error => {
                     console.log('❌ Ошибка регистрации Service Worker:', error);
@@ -50,20 +47,16 @@ class EzhanPWA {
         }
     }
 
-    // Обнаружение оффлайн режима
     setupOfflineDetection() {
         window.addEventListener('online', () => {
             console.log('📱 Онлайн статус: есть интернет');
-            this.showNotification('📱 Интернет подключен!', 'success');
         });
 
         window.addEventListener('offline', () => {
             console.log('📴 Оффлайн статус: нет интернета');
-            this.showNotification('📴 Оффлайн режим! Дегенерация продолжается!', 'error');
         });
     }
 
-    // Кнопка "Установить приложение"
     addInstallPrompt() {
         let deferredPrompt;
         
@@ -77,10 +70,8 @@ class EzhanPWA {
 
         window.addEventListener('appinstalled', (evt) => {
             console.log('🎉 Приложение установлено!');
-            this.showNotification('🎉 ЕЖАН установлен!', 'success');
         });
 
-        // Проверяем можно ли показать кнопку
         setTimeout(() => {
             if (!deferredPrompt) {
                 console.log('ℹ️ beforeinstallprompt не сработал, показываем кнопку установки');
@@ -89,7 +80,6 @@ class EzhanPWA {
         }, 3000);
     }
 
-    // Основная кнопка установки
     createInstallButton(deferredPrompt = null) {
         this.removeExistingButton();
         
@@ -112,7 +102,6 @@ class EzhanPWA {
             transition: all 0.3s ease;
         `;
 
-        // Ховер эффекты
         installBtn.onmouseover = () => {
             installBtn.style.transform = 'scale(1.05)';
             installBtn.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
@@ -124,7 +113,6 @@ class EzhanPWA {
         };
 
         if (deferredPrompt) {
-            // Режим с настоящей установкой
             installBtn.addEventListener('click', () => {
                 console.log('🔄 Запуск установки...');
                 installBtn.innerHTML = '⏳ УСТАНАВЛИВАЕМ...';
@@ -146,12 +134,8 @@ class EzhanPWA {
                     deferredPrompt = null;
                 });
             });
-            
-            this.showNotification('📱 ЕЖАН готов к установке!', 'success');
         } else {
-            // Режим без deferredPrompt (показываем инструкции)
             installBtn.addEventListener('click', () => {
-                this.showNotification('ℹ️ Для установки используйте меню браузера', 'info');
                 this.showInstallInstructions();
             });
         }
@@ -159,7 +143,6 @@ class EzhanPWA {
         this.addButtonToPage(installBtn);
     }
 
-    // Принудительное отображение кнопки для тестирования
     forceShowInstallButton() {
         setTimeout(() => {
             const existingBtn = document.getElementById('ezhan-install-btn');
@@ -170,7 +153,6 @@ class EzhanPWA {
         }, 5000);
     }
 
-    // Инструкции по установке
     showInstallInstructions() {
         const instructions = document.createElement('div');
         instructions.innerHTML = `
@@ -205,14 +187,12 @@ class EzhanPWA {
         document.body.appendChild(instructions);
     }
 
-    // Вспомогательные методы
     removeExistingButton() {
         const oldBtn = document.getElementById('ezhan-install-btn');
         if (oldBtn) oldBtn.remove();
     }
 
     addButtonToPage(button) {
-        // Пробуем разные места для размещения кнопки
         const locations = [
             document.querySelector('footer'),
             document.querySelector('.footer'),
@@ -230,38 +210,8 @@ class EzhanPWA {
             }
         }
     }
-
-    // Утилита для уведомлений
-    showNotification(message, type = 'info') {
-        console.log('💬 Уведомление:', message);
-        
-        const notification = document.createElement('div');
-        notification.textContent = message;
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 12px 18px;
-            background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : type === 'info' ? '#2196F3' : '#FF9800'};
-            color: white;
-            border-radius: 8px;
-            z-index: 10000;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        `;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 4000);
-    }
 }
 
-// Запуск когда DOM готов
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ DOM загружен, запускаем PWA...');
     console.log('📍 Протокол:', window.location.protocol);
@@ -272,7 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
 });
 
-// Добавляем глобальную функцию для ручного вызова
 window.showEzhanInstall = function() {
     if (window.ezhanPWA) {
         window.ezhanPWA.createInstallButton();

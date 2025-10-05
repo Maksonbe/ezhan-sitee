@@ -104,11 +104,15 @@ class MainApp {
         sessionStorage.setItem('degenerationConfirmed', 'true');
         this.setButtonConfirmed(button);
         
-        // Вибрация
-        if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+        // Вибрация с проверкой настроек
+        if (this.shouldVibrate()) {
+            if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+        }
         
-        // Уведомление
-        NotificationManager.show('💀 ДЕГЕНЕРАЦИЯ ПОДТВЕРЖДЕНА!', 'success');
+        // Уведомление с проверкой настроек
+        if (this.shouldShowNotification()) {
+            NotificationManager.show('💀 ДЕГЕНЕРАЦИЯ ПОДТВЕРЖДЕНА!', 'success');
+        }
     }
 
     handleMindRefusal(button) {
@@ -118,18 +122,22 @@ class MainApp {
         sessionStorage.setItem('mindRefused', 'true');
         this.setButtonRefused(button);
         
-        // Вибрация
-        if (navigator.vibrate) navigator.vibrate([50, 100, 50]);
+        // Вибрация с проверкой настроек
+        if (this.shouldVibrate()) {
+            if (navigator.vibrate) navigator.vibrate([50, 100, 50]);
+        }
         
-        // Случайные сообщения
-        const messages = [
-            {text: "🧠 РАЗУМ УСПЕШНО УДАЛЁН!", type: "error"},
-            {text: "💀 МОЗГИ ОТСУТСТВУЮТ!", type: "error"},
-            {text: "🤪 ТЕПЕРЬ ТЫ НАСТОЯЩИЙ ДЕГЕНЕРАТ!", type: "success"},
-            {text: "🎉 ПОЗДРАВЛЯЕМ С ОТСУТСТВИЕМ РАЗУМА!", type: "success"}
-        ];
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        NotificationManager.show(randomMessage.text, randomMessage.type);
+        // Случайные сообщения с проверкой настроек
+        if (this.shouldShowNotification()) {
+            const messages = [
+                {text: "🧠 РАЗУМ УСПЕШНО УДАЛЁН!", type: "error"},
+                {text: "💀 МОЗГИ ОТСУТСТВУЮТ!", type: "error"},
+                {text: "🤪 ТЕПЕРЬ ТЫ НАСТОЯЩИЙ ДЕГЕНЕРАТ!", type: "success"},
+                {text: "🎉 ПОЗДРАВЛЯЕМ С ОТСУТСТВИЕМ РАЗУМА!", type: "success"}
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            NotificationManager.show(randomMessage.text, randomMessage.type);
+        }
     }
 
     animateButtonPress(button) {
@@ -363,38 +371,9 @@ class MainApp {
 
         // Вибрация для мобильных
         if (type === 'click' || type === 'touch') {
-            if (navigator.vibrate) {
+            if (this.shouldVibrate() && navigator.vibrate) {
                 navigator.vibrate(30);
             }
-        }
-    }
-
-    createParticles(x, y, count) {
-        for (let i = 0; i < count; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            const angle = Math.random() * Math.PI * 2;
-            const distance = 50 + Math.random() * 50;
-            const tx = Math.cos(angle) * distance;
-            const ty = Math.sin(angle) * distance;
-            
-            Object.assign(particle.style, {
-                '--tx': tx + 'px',
-                '--ty': ty + 'px',
-                left: x + 'px',
-                top: y + 'px',
-                background: `hsl(${Math.random() * 60 + 330}, 100%, 60%)`,
-                width: `${Math.random() * 4 + 2}px`,
-                height: `${Math.random() * 4 + 2}px`,
-                borderRadius: '50%'
-            });
-            
-            document.body.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 2000);
         }
     }
 
@@ -493,12 +472,53 @@ class MainApp {
             console.log('📱 Мобильные touch-эффекты активированы!');
         }
     }
-}
 
+    // ПРОВЕРКА НАСТРОЕК УВЕДОМЛЕНИЙ
+    shouldShowNotification() {
+        // Проверяем настройки уведомлений
+        const ezhanSettings = window.ezhanSettings;
+        if (ezhanSettings && !ezhanSettings.settings.notifications) {
+            return false;
+        }
+        
+        // Проверяем старые настройки для совместимости
+        if (localStorage.getItem('game-notifications-enabled') === 'false') {
+            return false;
+        }
+        
+        return true;
+    }
+
+    // ПРОВЕРКА НАСТРОЕК ВИБРАЦИИ
+    shouldVibrate() {
+        // Проверяем настройки вибрации
+        const ezhanSettings = window.ezhanSettings;
+        if (ezhanSettings && !ezhanSettings.settings.vibration) {
+            return false;
+        }
+        
+        // Проверяем старые настройки для совместимости
+        if (localStorage.getItem('game-vibration-enabled') === 'false') {
+            return false;
+        }
+        
+        return true;
+    }
+}
 
 // Менеджер уведомлений
 class NotificationManager {
     static show(message, type = 'info') {
+        // Проверяем настройки уведомлений
+        const ezhanSettings = window.ezhanSettings;
+        if (ezhanSettings && !ezhanSettings.settings.notifications) {
+            return;
+        }
+        
+        if (localStorage.getItem('game-notifications-enabled') === 'false') {
+            return;
+        }
+
         // Удаляем старые уведомления
         document.querySelectorAll('.notification').forEach(notification => {
             notification.remove();
@@ -625,11 +645,9 @@ window.addEventListener('resize', forceMobileStyles);
 // Также запускаем с задержкой на всякий случай
 setTimeout(forceMobileStyles, 1000);
 
-
 // Глобальные функции
 window.resetButtons = AppUtils.resetButtons;
 
 console.log('💀 ЕЖАН СИСТЕМС загружен!');
 console.log('🎮 Для сброса кнопок введите: resetButtons()');
 console.log('✨ Продвинутые анимации активированы!');
-

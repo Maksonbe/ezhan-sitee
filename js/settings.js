@@ -1,10 +1,10 @@
-// СИСТЕМА НАСТРОЕК ДЛЯ ЕЖАН СИСТЕМС - БЕЗ ТЕСТОВЫХ ФУНКЦИЙ
+// СИСТЕМА НАСТРОЕК ДЛЯ ЕЖАН СИСТЕМС - БЕЗ ЗВУКОВ
 class EzhanSettings {
     constructor() {
         console.log('⚙️ Инициализация настроек Ежана...');
         this.settings = {
             theme: 'dark',
-            sound: true,
+            sound: false, // ЗВУКИ ВЫКЛЮЧЕНЫ ПО УМОЛЧАНИЮ
             vibration: true,
             notifications: true
         };
@@ -20,6 +20,7 @@ class EzhanSettings {
         this.createSettingsPanel();
         this.applyTheme(this.settings.theme);
         this.setupGlobalEventListeners();
+        this.applyNotificationSettings();
         this.isInitialized = true;
         
         console.log('✅ Настройки Ежана загружены');
@@ -49,6 +50,9 @@ class EzhanSettings {
         if (localStorage.getItem('game-vibration-enabled') !== null) {
             this.settings.vibration = localStorage.getItem('game-vibration-enabled') === 'true';
         }
+        if (localStorage.getItem('game-notifications-enabled') !== null) {
+            this.settings.notifications = localStorage.getItem('game-notifications-enabled') === 'true';
+        }
     }
 
     // 💾 СОХРАНЕНИЕ НАСТРОЕК
@@ -59,6 +63,7 @@ class EzhanSettings {
             // Сохраняем для совместимости
             localStorage.setItem('game-sound-enabled', this.settings.sound);
             localStorage.setItem('game-vibration-enabled', this.settings.vibration);
+            localStorage.setItem('game-notifications-enabled', this.settings.notifications);
             
             console.log('💾 Настройки сохранены:', this.settings);
         } catch (e) {
@@ -153,17 +158,7 @@ class EzhanSettings {
                 
                 <div class="settings-divider"></div>
                 
-                <!-- Звук -->
-                <div class="setting-group">
-                    <div class="setting-row">
-                        <label for="sound-toggle" class="setting-label">🔊 ЗВУКИ ДЕГЕНЕРАЦИИ</label>
-                        <label class="switch">
-                            <input type="checkbox" id="sound-toggle" ${this.settings.sound ? 'checked' : ''}>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                    <div class="setting-description">Звуковые эффекты достижений и левел-апов</div>
-                </div>
+                <!-- Звук УБРАН -->
                 
                 <!-- Вибрация -->
                 <div class="setting-group">
@@ -225,7 +220,6 @@ class EzhanSettings {
 
         // Переключатели
         const toggles = {
-            'sound-toggle': 'sound',
             'vibration-toggle': 'vibration', 
             'notifications-toggle': 'notifications'
         };
@@ -234,10 +228,14 @@ class EzhanSettings {
             const element = document.getElementById(id);
             if (element) {
                 element.addEventListener('change', (e) => {
-                    this.settings[setting] = e.target.checked;
+                    const isEnabled = e.target.checked;
+                    this.settings[setting] = isEnabled;
                     this.saveSettings();
                     this.vibrate(25);
-                    this.showSettingNotification(setting, e.target.checked);
+                    this.showSettingNotification(setting, isEnabled);
+                    
+                    // Применяем настройки сразу
+                    this.applyNotificationSettings();
                 });
             }
         });
@@ -308,7 +306,6 @@ class EzhanSettings {
     // 🔔 УВЕДОМЛЕНИЯ О НАСТРОЙКАХ
     showSettingNotification(setting, enabled) {
         const messages = {
-            sound: `🔊 Звуки ${enabled ? 'включены' : 'выключены'}`,
             vibration: `📳 Вибрация ${enabled ? 'включена' : 'выключена'}`,
             notifications: `🔔 Уведомления ${enabled ? 'включены' : 'выключены'}`
         };
@@ -354,6 +351,20 @@ class EzhanSettings {
         setTimeout(() => {
             panel.classList.remove('active');
         }, 300);
+    }
+
+    // 🛠️ ПРИМЕНЕНИЕ НАСТРОЕК УВЕДОМЛЕНИЙ
+    applyNotificationSettings() {
+        // Сохраняем настройки в localStorage для совместимости
+        localStorage.setItem('game-sound-enabled', this.settings.sound);
+        localStorage.setItem('game-vibration-enabled', this.settings.vibration);
+        localStorage.setItem('game-notifications-enabled', this.settings.notifications);
+        
+        console.log('⚙️ Применены настройки:', {
+            sound: this.settings.sound,
+            vibration: this.settings.vibration,
+            notifications: this.settings.notifications
+        });
     }
 
     // 🎨 ПРИМЕНЕНИЕ СТИЛЕЙ ПАНЕЛИ
