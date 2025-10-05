@@ -4749,4 +4749,163 @@ html {
         --success-color: #00ff88;
     }
 }
+/* === ИСПРАВЛЕНИЕ СЛИПАНИЯ НАВИГАЦИИ НА ТЕЛЕФОНЕ === */
+
+@media (max-width: 430px) {
+    /* Улучшаем шапку для мобильных */
+    .header {
+        padding: 0.6rem 1rem !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(10, 10, 10, 0.95) !important;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .header-content {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 0.8rem !important;
+        min-height: 50px;
+    }
+    
+    .logo {
+        flex-shrink: 0;
+    }
+    
+    .logo span {
+        font-size: 1rem !important;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+    
+    .nav {
+        display: flex !important;
+        gap: 0.4rem !important;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0.3rem 0;
+        max-width: 60%;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE */
+    }
+    
+    .nav::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
+    }
+    
+    .nav-link {
+        font-size: 0.7rem !important;
+        padding: 0.5rem 0.8rem !important;
+        white-space: nowrap;
+        background: rgba(255, 51, 51, 0.15);
+        border: 1px solid rgba(255, 51, 51, 0.3);
+        border-radius: 10px;
+        color: var(--text-primary) !important;
+        font-weight: 600;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        background: var(--accent-red) !important;
+        border-color: var(--accent-red) !important;
+        color: white !important;
+        transform: scale(1.05);
+    }
+    
+    .header-contact {
+        display: none !important;
+    }
+
+    /* Улучшаем кнопку настроек для мобильных */
+    #settings-btn {
+        position: fixed !important;
+        top: 15px !important;
+        right: 15px !important;
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        background: var(--accent-red) !important;
+        border: 2px solid rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+        font-size: 1.1rem !important;
+        cursor: pointer !important;
+        z-index: 10001 !important;
+        box-shadow: 0 4px 12px rgba(255, 51, 51, 0.4) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    #settings-btn:hover {
+        transform: scale(1.1) rotate(90deg) !important;
+        box-shadow: 0 6px 20px rgba(255, 51, 51, 0.6) !important;
+    }
+
+    /* Увеличиваем отступ для героя, чтобы не перекрывался навигацией */
+    .hero, .about-hero, .manifest-hero, .gallery-hero, .game-hero {
+        padding-top: 100px !important;
+    }
+}
+
+/* Для очень маленьких экранов (iPhone SE и подобные) */
+@media (max-width: 375px) {
+    .header-content {
+        gap: 0.5rem !important;
+    }
+    
+    .logo span {
+        font-size: 0.9rem !important;
+    }
+    
+    .nav {
+        max-width: 55%;
+        gap: 0.3rem !important;
+    }
+    
+    .nav-link {
+        font-size: 0.65rem !important;
+        padding: 0.4rem 0.6rem !important;
+    }
+    
+    #settings-btn {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 1rem !important;
+        top: 12px !important;
+        right: 12px !important;
+    }
+}
+
+/* Для горизонтальной ориентации */
+@media (max-height: 500px) and (orientation: landscape) {
+    .header {
+        padding: 0.4rem 1rem !important;
+    }
+    
+    .header-content {
+        min-height: 40px;
+    }
+    
+    .nav-link {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.65rem !important;
+    }
+    
+    #settings-btn {
+        width: 35px !important;
+        height: 35px !important;
+        top: 8px !important;
+        right: 8px !important;
+    }
+    
+    .hero, .about-hero, .manifest-hero, .gallery-hero, .game-hero {
+        padding-top: 70px !important;
+    }
+}
 
